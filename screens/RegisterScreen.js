@@ -1,8 +1,12 @@
 import React from "react";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, Text } from "react-native";
 
 const RegisterScreen = () => {
-  return <SafeAreaView>RegisterScreen</SafeAreaView>;
+  return (
+    <SafeAreaView>
+      <Text>RegisterScreen</Text>
+    </SafeAreaView>
+  );
 };
 
 export default RegisterScreen;
