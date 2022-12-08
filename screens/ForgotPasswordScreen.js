@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-import SocialLogin from "../components/Login/SocialLogin";
+import SocialLogin from "../components/login/SocialLogin";
 import Button from "../components/ui/Button";
 import ImageBg from "../components/ui/ImageBg";
 import Input from "../components/ui/Input";

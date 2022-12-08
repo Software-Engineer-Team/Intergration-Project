@@ -24,32 +24,31 @@ export default function App() {
             headerShown: false,
           }}
         />
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Login"
-            component={LoginScreen}
-            options={{
-              presentation: "fullScreenModal",
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="Register"
-            component={RegisterScreen}
-            options={{
-              presentation: "fullScreenModal",
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="ForgotPassword"
-            component={ForgotPasswordScreen}
-            options={{
-              presentation: "fullScreenModal",
-              headerShown: false,
-            }}
-          />
-        </Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{
+            presentation: "fullScreenModal",
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
+          options={{
+            presentation: "fullScreenModal",
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ForgotPassword"
+          component={ForgotPasswordScreen}
+          options={{
+            presentation: "fullScreenModal",
+            headerShown: false,
+          }}
+        />
+      </Stack.Navigator>
       {/* </Provider> */}
     </NavigationContainer>
   );
