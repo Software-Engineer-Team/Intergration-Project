@@ -1,9 +1,4 @@
 export const Colors = {
-  primary500: "#72063c",
-  primary600: "#640233",
-  primary700: "#4e0329",
-  primary800: "#3b021f",
-  accent500: "#ddb52f",
   backdrop: "#000000",
   color: "#ffffff",
   placeholderColor: "#ffffff",
@@ -11,4 +6,11 @@ export const Colors = {
   labelColor: "#a5a5a5",
   rootBodyImg: "#f2f2f2",
   textMuted: "#c6c6c6",
+  buttonColor: "#010101",
+  textFieldColor: "#ffffef",
+  faceBookBg: "#39559f",
+  googleBg: "#dd4c39",
+  twitterBg: "#4faaf0",
+  iconColor: "#000000",
+  checkBoxColor: "#333333f0"
 };
