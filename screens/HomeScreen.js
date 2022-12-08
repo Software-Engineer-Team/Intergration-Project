@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  FlatList,
   ImageBackground,
   SafeAreaView,
   ScrollView,
@@ -10,8 +11,70 @@ import {
 } from "react-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import IconMaterialIcons from "react-native-vector-icons/MaterialIcons";
+import ApplyJob from "../components/home/ApplyJob";
+import Category from "../components/home/Category";
+import JobTitle from "../components/home/JobTitle";
+import Card from "../components/ui/Card";
+import { Colors } from "../constants/colors";
 
 const HomeScreen = () => {
+  const categories = [
+    {
+      id: Math.random().toString(),
+      iconName: "address-book-o",
+      iconColor: "#3a59e8",
+      iconSize: 100,
+      backgroundBox: { backgroundColor: "#f4f7fe" },
+      categoryName: "IT",
+      numOfJobs: "31072-jobs",
+    },
+    {
+      id: Math.random().toString(),
+      iconName: "address-book-o",
+      iconColor: "#7cb92e",
+      iconSize: 100,
+      backgroundBox: { backgroundColor: "#f9fcf5" },
+      categoryName: "IT",
+      numOfJobs: "31072-jobs",
+    },
+    {
+      id: Math.random().toString(),
+      iconName: "address-book-o",
+      iconColor: "#fbbe5d",
+      iconSize: 100,
+      backgroundBox: { backgroundColor: "#fffcf7" },
+      categoryName: "IT",
+      numOfJobs: "31072-jobs",
+    },
+    {
+      id: Math.random().toString(),
+      iconName: "address-book-o",
+      iconColor: "#f7751f",
+      iconSize: 100,
+      backgroundBox: { backgroundColor: "#fffaf6" },
+      categoryName: "IT",
+      numOfJobs: "31072-jobs",
+    },
+    {
+      id: Math.random().toString(),
+      iconName: "address-book-o",
+      iconColor: "#8274fb",
+      iconSize: 100,
+      backgroundBox: { backgroundColor: "#fbfaff" },
+      categoryName: "IT",
+      numOfJobs: "31072-jobs",
+    },
+    {
+      id: Math.random().toString(),
+      iconName: "address-book-o",
+      iconColor: "#f64e89",
+      iconSize: 100,
+      backgroundBox: { backgroundColor: "#fdf7f9" },
+      categoryName: "IT",
+      numOfJobs: "31072-jobs",
+    },
+  ];
+
   return (
     <SafeAreaView style={styles.rootScreen}>
       <View style={styles.rootHeader}>
@@ -42,6 +105,77 @@ const HomeScreen = () => {
             />
           </View>
         </ImageBackground>
+
+        {/* // TOP EMPLOYERS */}
+        <Card>
+          <JobTitle textMuted="TOP" text="EMPLOYERS" />
+          <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{
+              paddingBottom: 35,
+              paddingRight: 20,
+            }}
+            data={categories}
+            renderItem={({ item }) => {
+              return (
+                <Category
+                  iconName={item.iconName}
+                  iconSize={item.iconSize}
+                  iconColor={item.iconColor}
+                  backgroundBox={item.backgroundBox}
+                  categoryName={item.categoryName}
+                  numOfJobs={item.numOfJobs}
+                  onPress={() => {}}
+                />
+              );
+            }}
+            keyExtractor={(item, _index) => {
+              return item.id;
+            }}
+            alwaysBounceVertical={false}
+          />
+        </Card>
+
+        <Card>
+          <JobTitle textMuted="FEATURED" text="JOBS" />
+          <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{
+              paddingBottom: 35,
+              paddingRight: 20,
+            }}
+            data={categories}
+            renderItem={({ item }) => {
+              return <ApplyJob />;
+            }}
+            keyExtractor={(item) => {
+              return item.id;
+            }}
+            alwaysBounceVertical={false}
+          />
+        </Card>
+
+        <Card>
+          <JobTitle textMuted="FEATURED" text="JOBS" />
+          <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{
+              paddingBottom: 35,
+              paddingRight: 20,
+            }}
+            data={categories}
+            renderItem={({ item }) => {
+              return <ApplyJob />;
+            }}
+            keyExtractor={(item) => {
+              return item.id;
+            }}
+            alwaysBounceVertical={false}
+          />
+        </Card>
       </ScrollView>
     </SafeAreaView>
   );
@@ -51,13 +185,15 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   rootScreen: {
-    paddingTop: 25,
-    backgroundColor: "white",
+    paddingTop: 15,
+    backgroundColor: Colors.rootBodyImg,
     position: "relative",
   },
   rootHeader: {
     flexDirection: "row",
     padding: 20,
+    backgroundColor: Colors.color,
+    paddingBottom: 15,
   },
   rootHeaderTextContainer: {
     flex: 1,
@@ -72,7 +208,7 @@ const styles = StyleSheet.create({
     height: 261,
     fontSize: 40,
     position: "relative",
-    backgroundColor: "#f2f2f2",
+    backgroundColor: Colors.rootBodyImg,
   },
   rootBodySearch: {
     position: "relative",

@@ -9,4 +9,6 @@ export const Colors = {
   placeholderColor: "#ffffff",
   borderBottom: "#a5a5a5",
   labelColor: "#a5a5a5",
+  rootBodyImg: "#f2f2f2",
+  textMuted: "#c6c6c6",
 };
