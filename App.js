@@ -6,6 +6,7 @@ import { store } from "./store";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
+import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,14 @@ export default function App() {
           <Stack.Screen
             name="Register"
             component={RegisterScreen}
+            options={{
+              presentation: "fullScreenModal",
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="ForgotPassword"
+            component={ForgotPasswordScreen}
             options={{
               presentation: "fullScreenModal",
               headerShown: false,
