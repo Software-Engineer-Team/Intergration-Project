@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   rootFooter: {
     flexDirection: "row",
     position: "absolute",
-    bottom: 60,
+    bottom: 0,
     padding: 10,
     paddingHorizontal: 20,
     height: 70,

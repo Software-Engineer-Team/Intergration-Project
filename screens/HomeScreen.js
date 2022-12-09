@@ -206,14 +206,14 @@ const HomeScreen = () => {
         showProfile={showProfile}
         toggleShowProfile={toggleShowProfile}
       />
-      <View style={styles.rootHeader}>
-        <TouchableOpacity onPress={toggleShowProfile}>
-          <IconFontAwesome name="bars" size={18} />
-        </TouchableOpacity>
-        <View style={styles.rootHeaderTextContainer}>
-          <Text style={styles.rootHeaderText}>PaySit</Text>
-        </View>
-      </View>
+      {/* <View style={styles.rootHeader}> */}
+      {/*   <TouchableOpacity onPress={toggleShowProfile}> */}
+      {/*     <IconFontAwesome name="bars" size={18} /> */}
+      {/*   </TouchableOpacity> */}
+      {/*   <View style={styles.rootHeaderTextContainer}> */}
+      {/*     <Text style={styles.rootHeaderText}>PaySit</Text> */}
+      {/*   </View> */}
+      {/* </View> */}
 
       <ScrollView style={styles.rootBody}>
         <ImageBackground
@@ -308,7 +308,7 @@ const HomeScreen = () => {
         </Card>
 
         {/*TOP EMPLOYERS*/}
-        <Card cardStyle={{ marginBottom: 165 }}>
+        <Card cardStyle={{ marginBottom: 100 }}>
           <JobTitle textMuted="TOP" text="EMPLOYERS" />
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {topJobs?.map((item) => (
@@ -332,7 +332,6 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   rootScreen: {
-    paddingTop: 15,
     backgroundColor: Colors.rootBodyImg,
     position: "relative",
   },
