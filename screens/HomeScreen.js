@@ -1,4 +1,5 @@
-import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import React, { useRef, useState } from "react";
 import {
   FlatList,
   ImageBackground,
@@ -7,17 +8,25 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
+import { Modalize } from "react-native-modalize";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import IconMaterialIcons from "react-native-vector-icons/MaterialIcons";
 import ApplyJob from "../components/home/ApplyJob";
 import Category from "../components/home/Category";
 import JobTitle from "../components/home/JobTitle";
+import Profile from "../components/Profile/Profile";
 import Card from "../components/ui/Card";
 import { Colors } from "../constants/colors";
 
 const HomeScreen = () => {
+  const modalizeRef = useRef(null);
+  const [showProfile, setShowProfile] = useState(false);
+  const toggleShowProfile = () => {
+    setShowProfile(!showProfile);
+  };
   const categories = [
     {
       id: Math.random().toString(),
@@ -77,8 +86,14 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.rootScreen}>
+      <Profile
+        showProfile={showProfile}
+        toggleShowProfile={toggleShowProfile}
+      />
       <View style={styles.rootHeader}>
-        <IconFontAwesome name="bars" size={18} />
+        <TouchableOpacity onPress={toggleShowProfile}>
+          <IconFontAwesome name="bars" size={18} />
+        </TouchableOpacity>
         <View style={styles.rootHeaderTextContainer}>
           <Text style={styles.rootHeaderText}>PaySit</Text>
         </View>

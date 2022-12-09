@@ -40,6 +40,14 @@ export default function App() {
             headerShown: false,
           }}
         />
+        {/* <Stack.Screen */}
+        {/*   name="Profile" */}
+        {/*   component={ProfileScreen} */}
+        {/*   options={{ */}
+        {/*     presentation: "modal", */}
+        {/*     headerShown: false, */}
+        {/*   }} */}
+        {/* /> */}
         <Stack.Screen
           name="ForgotPassword"
           component={ForgotPasswordScreen}

@@ -1,5 +1,6 @@
 export const Colors = {
   backdrop: "#000000",
+  backdropAlt: "rgba(0, 0, 0, 0.5)",
   color: "#ffffff",
   placeholderColor: "#ffffff",
   borderBottom: "#a5a5a5",
@@ -12,5 +13,8 @@ export const Colors = {
   googleBg: "#dd4c39",
   twitterBg: "#4faaf0",
   iconColor: "#000000",
-  checkBoxColor: "#333333f0"
+  iconColorAlt: "#333333",
+  checkBoxColor: "#333333f0",
+  rippleColor: "rgba(0, 0, 0, 0.2)",
+  lineColor: "rgba(0, 0, 0, 0.2)",
 };

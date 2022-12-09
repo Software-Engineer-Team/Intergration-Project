@@ -11,21 +11,33 @@ export default function SocialLogin() {
         <Text style={styles.text}>OR</Text>
       </View>
       <View style={styles.iconsContainer}>
-        <Icon type={"FACEBOOK"}>
+        <Icon
+          customStyle={{
+            backgroundColor: Colors.faceBookBg,
+          }}
+        >
           <FontAwesome5
             name="facebook-f"
             size={Sizes.iconSize}
             color={Colors.iconColor}
           />
         </Icon>
-        <Icon type={"GOOGLE"}>
+        <Icon
+          customStyle={{
+            backgroundColor: Colors.googleBg,
+          }}
+        >
           <FontAwesome5
             name="google"
             size={Sizes.iconSize}
             color={Colors.iconColor}
           />
         </Icon>
-        <Icon>
+        <Icon
+          customStyle={{
+            backgroundColor: Colors.twitterBg,
+          }}
+        >
           <FontAwesome5
             name="twitter"
             size={Sizes.iconSize}

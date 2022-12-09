@@ -1,16 +1,9 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import { Colors } from "../../constants/colors";
 
-export default function Icon({ children, type }) {
-  const bg =
-    type === "FACEBOOK"
-      ? styles.faceBookBg
-      : type === "GOOGLE"
-      ? styles.googleBg
-      : styles.twitterBg;
+export default function Icon({ children, customStyle, onPress }) {
   return (
-    <TouchableOpacity style={[styles.container, bg]}>
+    <TouchableOpacity style={[styles.container, customStyle]} onPress={onPress}>
       {children}
     </TouchableOpacity>
   );
@@ -25,14 +18,5 @@ const styles = StyleSheet.create({
     height: 45,
     marginHorizontal: 10,
     borderRadius: 4,
-  },
-  faceBookBg: {
-    backgroundColor: Colors.faceBookBg,
-  },
-  googleBg: {
-    backgroundColor: Colors.googleBg,
-  },
-  twitterBg: {
-    backgroundColor: Colors.twitterBg,
   },
 });
