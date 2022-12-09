@@ -7,6 +7,7 @@ export const Colors = {
   labelColor: "#a5a5a5",
   rootBodyImg: "#f2f2f2",
   textMuted: "#c6c6c6",
+  textMutedAlt: "#7a7a7a",
   buttonColor: "#010101",
   textFieldColor: "#ffffef",
   faceBookBg: "#39559f",
@@ -17,4 +18,14 @@ export const Colors = {
   checkBoxColor: "#333333f0",
   rippleColor: "rgba(0, 0, 0, 0.2)",
   lineColor: "rgba(0, 0, 0, 0.2)",
+};
+
+export const IconColors = {
+  iconBlue: "#3a59e8",
+  iconBlueAlt: "#8274fb",
+  iconGreen: "#7cb92e",
+  iconBlack: "#000000",
+  iconOrange: "#f7751f",
+  iconPink: "#f64e89",
+  iconYellow: "#fbbe5d",
 };

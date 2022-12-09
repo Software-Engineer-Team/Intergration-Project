@@ -1,23 +1,28 @@
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
-import IconFontAwesome from "react-native-vector-icons/FontAwesome";
-import { Colors } from "../../constants/colors";
+import { StyleSheet, Text, View } from "react-native";
+import Button from "../ui/Button";
 
-const ApplyJob = () => {
+const ApplyJob = ({
+  backgroundBox,
+  backgroundContainer,
+  textDescription1,
+  textDescription2,
+  textDescription3,
+}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, backgroundContainer]}>
       <View style={styles.desciptionContainer}>
-        <View style={[styles.box1]} />
-        <View style={[styles.box2]} />
-        <View style={[styles.box3]} />
+        <View style={[styles.box1, backgroundBox]} />
+        <View style={[styles.box2, backgroundBox]} />
+        <View style={[styles.box3, backgroundBox]} />
       </View>
       <View style={styles.textDescription}>
-        <Text style={styles.textDescription1}>IT Department Manager</Text>
-        <Text style={styles.textDescription2}>Infosys Ltd</Text>
-        <Text style={styles.textDescription3}>Delhi</Text>
+        <Text style={styles.textDescription1}>{textDescription1}</Text>
+        <Text style={styles.textDescription2}>{textDescription2}</Text>
+        <Text style={styles.textDescription3}>{textDescription3}</Text>
       </View>
       <View style={[styles.textContainer]}>
-        <Button title="ApplyJob" />
+        <Button title="APPLY" buttonStyle={backgroundBox} />
       </View>
     </View>
   );
@@ -92,11 +97,8 @@ const styles = StyleSheet.create({
   textDescription2: { color: "white", fontWeight: "500", marginTop: 7 },
   textDescription3: { color: "white", fontWeight: "500", marginTop: 17 },
   textContainer: {
-    flex: 0.25,
-    left: 15,
-    width: 140,
-    borderRadius: 4,
-    alignItems: "center",
-    justifyContent: "center",
+    bottom: 10,
+    right: 10,
+    position: "absolute",
   },
 });
