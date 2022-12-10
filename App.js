@@ -12,6 +12,7 @@ import IconProfile from "./components/home/IconProfile";
 import Jobs from "./components/job/Jobs";
 import PostJob from "./components/job/PostJob";
 import JobDetail from "./components/job/JobDetail";
+import EmployerScreen from "./screens/EmployerScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,19 @@ export default function App() {
     <NavigationContainer>
       <Provider store={store}>
         <Stack.Navigator>
+          <Stack.Screen
+            name="Employer"
+            component={EmployerScreen}
+            options={{
+              presentation: "fullScreenModal",
+              headerShown: true,
+              headerTitleAlign: "center",
+              title: "Employer",
+              headerLeft: () => (
+                <IconProfile customStyle={{ left: -20 }} iconName="bars" />
+              ),
+            }}
+          />
           <Stack.Screen
             name="Login"
             component={LoginScreen}
