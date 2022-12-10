@@ -1,30 +1,66 @@
 import React from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import IconFontAwesome from "react-native-vector-icons/FontAwesome";
+import { StyleSheet, Text, View } from "react-native";
+import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { Colors } from "../../constants/colors";
-export default function Job() {
+import { Sizes } from "../../constants/sizes";
+import Button from "../ui/Button";
+export default function Job({ onPress }) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <View style={styles.container}>
       <View style={{ flex: 1 }}>
-        <View style={styles.locationContainer}>
-          <View style={styles.company}>
-            <Text style={styles.text}>"TEST"</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.text}>Title</Text>
+        </View>
+        <View style={styles.yearAndLocationContainer}>
+          <View style={styles.yearAndLocation}>
+            <IconFontAwesome5
+              name="user-tie"
+              size={Sizes.iconSize1}
+              color={Colors.textMuted}
+            />
+            <View style={{ marginLeft: 20 }}>
+              <Text style={styles.iconText}>2-5 years</Text>
+            </View>
+          </View>
+          <View style={styles.yearAndLocation}>
+            <IconFontAwesome5
+              name="map-marker-alt"
+              size={Sizes.iconSize1}
+              color={Colors.textMuted}
+            />
+            <View style={{ marginLeft: 20 }}>
+              <Text style={styles.iconText}>Viet Nam</Text>
+            </View>
           </View>
         </View>
-        <View style={styles.languagesContainer}>
-          <IconFontAwesome name="tags" size={20} color={Colors.textMuted} />
+        <View style={styles.description}>
+          <Text style={[styles.text, styles.descriptionText]} numberOfLines={3}>
+            TEST
+            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm0000000000000000000000000000000000000000000000000000000000000000000000000000
+          </Text>
+        </View>
+        <View style={styles.iconContainer}>
+          <IconFontAwesome5 name="tags" size={18} color={Colors.textMuted} />
           <View style={{ marginLeft: 20 }}>
-            <Text style={{ color: "#9b9b9b" }}>"TEST"</Text>
+            <Text style={styles.iconText} numberOfLines={1}>
+              "TEST111111111111111mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
+            </Text>
           </View>
         </View>
+
+        <Button
+          title="Apply Now"
+          buttonStyle={{
+            backgroundColor: "#000000",
+            width: 90,
+            marginTop: 0,
+            paddingVertical: 6,
+            paddingHorizontal: 0,
+          }}
+          onPress={onPress}
+        />
       </View>
-    </TouchableOpacity>
+    </View>
   );
 }
 
@@ -32,8 +68,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "90%",
-    marginHorizontal: 10,
-    marginVertical: 5,
+    margin: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -47,26 +82,43 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 10,
   },
-  locationContainer: {
+  titleContainer: {
     flexDirection: "row",
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.textMuted,
-    marginTop: 2,
-  },
-  company: {
-    marginLeft: 15,
-    marginBottom: 10,
+    marginVertical: 4,
   },
   text: {
-    lineHeight: 18,
+    lineHeight: 16,
     fontSize: 16,
     fontWeight: "bold",
-    /* marginBottom: 4, */
   },
-  languagesContainer: {
-    padding: 10,
-    marginTop: 2,
+  yearAndLocationContainer: {
+    paddingVertical: 5,
+    flexDirection: "row",
+  },
+  yearAndLocation: {
+    flexDirection: "row",
+  },
+  description: {
+    paddingVertical: 5,
+    fontSize: 10,
+  },
+  descriptionText: {
+    fontSize: 15,
+    fontWeight: "400",
+    color: Colors.colorAlt,
+  },
+  iconContainer: {
+    /* padding: 10, */
+    marginVertical: 5,
     flex: 1,
     flexDirection: "row",
+    justifyContent: "flex-start",
+  },
+  iconText: {
+    color: Colors.colorAlt,
+    lineHeight: 21,
+    fontSize: 12,
+    left: -15,
+    bottom: 2,
   },
 });

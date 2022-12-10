@@ -10,6 +10,7 @@ export const profileSlice = createSlice({
   // Actions that allow us to modify the global store
   reducers: {
     setShowProfile(state, action) {
+      console.log(action.payload.showProfile);
       state.showProfile = action.payload.showProfile;
     },
   },

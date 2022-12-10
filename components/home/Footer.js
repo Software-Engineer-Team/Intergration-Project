@@ -4,8 +4,10 @@ import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import { IconColors } from "../../constants/colors";
 import Icon from "../ui/Icon";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Footer() {
+  const { navigate } = useNavigation();
   return (
     <View style={styles.rootFooter}>
       <Icon customStyle={styles.itemFooter}>
@@ -14,7 +16,12 @@ export default function Footer() {
           Home
         </Text>
       </Icon>
-      <Icon customStyle={styles.itemFooter}>
+      <Icon
+        customStyle={styles.itemFooter}
+        onPress={() => {
+          navigate("Jobs");
+        }}
+      >
         <IconFontAwesome5 name="globe" size={23} color={IconColors.iconGreen} />
         <Text style={[styles.rootFooterText, { color: IconColors.iconGreen }]}>
           Jobs
@@ -40,7 +47,12 @@ export default function Footer() {
           Profile
         </Text>
       </TouchableOpacity>
-      <Icon customStyle={styles.itemFooter}>
+      <Icon
+        customStyle={styles.itemFooter}
+        onPress={() => {
+          navigate("PostJob");
+        }}
+      >
         <IconFontAwesome5
           name="address-card"
           size={23}

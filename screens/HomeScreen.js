@@ -23,6 +23,7 @@ import { selectShowProfile, setShowProfile } from "../features/profile";
 
 const HomeScreen = () => {
   const showProfile = useSelector(selectShowProfile);
+  console.log("showProfile", showProfile);
   const dispatch = useDispatch();
   const categories = [
     {
@@ -199,9 +200,9 @@ const HomeScreen = () => {
     <SafeAreaView style={styles.rootScreen}>
       <Profile
         showProfile={showProfile}
-        toggleShowProfile={() =>
-          dispatch(setShowProfile({ showProfile: false }))
-        }
+        toggleShowProfile={() => {
+          dispatch(setShowProfile({ showProfile: false }));
+        }}
       />
 
       <ScrollView style={styles.rootBody}>

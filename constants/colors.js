@@ -2,6 +2,9 @@ export const Colors = {
   backdrop: "#000000",
   backdropAlt: "rgba(0, 0, 0, 0.5)",
   color: "#ffffff",
+  color1: "#7f7f7f",
+  titleColor: "#4c4c4c",
+  colorAlt: "#9b9b9b",
   placeholderColor: "#ffffff",
   borderBottom: "#a5a5a5",
   labelColor: "#a5a5a5",
@@ -18,6 +21,7 @@ export const Colors = {
   checkBoxColor: "#333333f0",
   rippleColor: "rgba(0, 0, 0, 0.2)",
   lineColor: "rgba(0, 0, 0, 0.2)",
+  skillsBg: "#e5e5e5",
 };
 
 export const IconColors = {

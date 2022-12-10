@@ -11,6 +11,7 @@ import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 import IconProfile from "./components/home/IconProfile";
 import Jobs from "./components/job/Jobs";
 import PostJob from "./components/job/PostJob";
+import JobDetail from "./components/job/JobDetail";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,51 +20,6 @@ export default function App() {
     <NavigationContainer>
       <Provider store={store}>
         <Stack.Navigator>
-          <Stack.Screen
-            name="Post a Job"
-            component={PostJob}
-            options={{
-              presentation: "fullScreenModal",
-              headerShown: true,
-              headerTitleAlign: "center",
-              title: "Post a Job",
-              headerLeft: () => (
-                <IconProfile
-                  customStyle={{ left: -20 }}
-                  iconName="arrow-left"
-                />
-              ),
-            }}
-          />
-          <Stack.Screen
-            name="Jobs"
-            component={Jobs}
-            options={{
-              presentation: "fullScreenModal",
-              headerShown: true,
-              headerTitleAlign: "center",
-              title: "Jobs",
-              headerLeft: () => (
-                <IconProfile
-                  customStyle={{ left: -20 }}
-                  iconName="arrow-left"
-                />
-              ),
-            }}
-          />
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              presentation: "fullScreenModal",
-              headerShown: true,
-              headerTitleAlign: "center",
-              title: "Home",
-              headerLeft: () => (
-                <IconProfile customStyle={{ left: -20 }} iconName="bars" />
-              ),
-            }}
-          />
           <Stack.Screen
             name="Login"
             component={LoginScreen}
@@ -86,6 +42,72 @@ export default function App() {
             options={{
               presentation: "fullScreenModal",
               headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              presentation: "fullScreenModal",
+              headerShown: true,
+              headerTitleAlign: "center",
+              title: "Home",
+              headerLeft: () => (
+                <IconProfile
+                  customStyle={{ left: -20 }}
+                  iconName="bars"
+                  type="Profile"
+                />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name="Jobs"
+            component={Jobs}
+            options={{
+              presentation: "fullScreenModal",
+              headerShown: true,
+              headerTitleAlign: "center",
+              title: "Jobs",
+              headerLeft: () => (
+                <IconProfile
+                  customStyle={{ left: -20 }}
+                  iconName="arrow-left"
+                />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name="PostJob"
+            component={PostJob}
+            options={{
+              presentation: "fullScreenModal",
+              headerShown: true,
+              headerTitleAlign: "center",
+              title: "Post a Job",
+              headerLeft: () => (
+                <IconProfile
+                  customStyle={{ left: -20 }}
+                  iconName="arrow-left"
+                />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name="JobDetail"
+            component={JobDetail}
+            options={{
+              presentation: "fullScreenModal",
+              headerShown: true,
+              headerTitleAlign: "center",
+              title: "Job Detail",
+              headerLeft: () => (
+                <IconProfile
+                  customStyle={{ left: -20 }}
+                  iconName="arrow-left"
+                  type="JobDetail"
+                />
+              ),
             }}
           />
         </Stack.Navigator>

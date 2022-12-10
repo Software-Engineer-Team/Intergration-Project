@@ -1,15 +1,28 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { Colors } from "../../constants/colors";
 import Card from "../ui/Card";
 import Job from "./Job";
 export default function Jobs() {
+  const { navigate } = useNavigation();
   return (
-    <Card>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <Job />
-      </ScrollView>
-    </Card>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <Card cardStyle={{ marginVertical: 10 }}>
+        {Array(10)
+          .fill(undefined)
+          .map((_el, idx) => {
+            return (
+              <Job
+                key={idx}
+                onPress={() => {
+                  navigate("JobDetail", {});
+                }}
+              />
+            );
+          })}
+      </Card>
+    </ScrollView>
   );
 }
 

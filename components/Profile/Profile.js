@@ -13,6 +13,7 @@ import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import { Colors } from "../../constants/colors";
 import { Sizes } from "../../constants/sizes";
 import Icon from "../ui/Icon";
+import Line from "../ui/Line";
 import ProfileIcon from "./ProfileIcon";
 
 export default function Profile({ showProfile, toggleShowProfile }) {
@@ -129,7 +130,7 @@ export default function Profile({ showProfile, toggleShowProfile }) {
                 );
               })}
             </View>
-            <View style={styles.line} />
+            <Line />
             <View style={styles.scrollViewContainer}>
               {profileCategories.employerHome.map(
                 ({ iconName, title }, idx) => {
@@ -139,7 +140,7 @@ export default function Profile({ showProfile, toggleShowProfile }) {
                 }
               )}
             </View>
-            <View style={styles.line} />
+            <Line />
             <View style={styles.scrollViewContainer}>
               {profileCategories.jobSeekerHome.map(
                 ({ iconName, title }, idx) => {
@@ -176,11 +177,5 @@ const styles = StyleSheet.create({
   imgContainer: {
     flex: 0.5,
     zIndex: 10,
-  },
-  line: {
-    backgroundColor: Colors.lineColor,
-    width: "100%",
-    height: 1,
-    marginVertical: 20,
   },
 });

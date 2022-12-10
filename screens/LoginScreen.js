@@ -38,7 +38,9 @@ const LoginScreen = () => {
           <Button
             title={"Sign In"}
             color={Colors.buttonColor}
-            onPress={() => {}}
+            onPress={() => {
+              navigate("Home");
+            }}
           />
           <TextField
             title={"Don't have an account? SignUp"}
