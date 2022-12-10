@@ -4,7 +4,7 @@ import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import { useDispatch } from "react-redux";
 import { setShowProfile } from "../../features/profile";
 
-export default function IconProfile({ customStyle }) {
+export default function IconProfile({ customStyle, iconName }) {
   const dispatch = useDispatch();
 
   return (
@@ -12,7 +12,7 @@ export default function IconProfile({ customStyle }) {
       style={[styles.container, customStyle]}
       onPress={() => dispatch(setShowProfile({ showProfile: true }))}
     >
-      <IconFontAwesome name="bars" size={18} />
+      <IconFontAwesome name={iconName} size={18} />
     </TouchableOpacity>
   );
 }

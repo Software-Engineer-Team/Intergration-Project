@@ -1,25 +1,26 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import { IconColors } from "../../constants/colors";
+import Icon from "../ui/Icon";
 
 export default function Footer() {
   return (
     <View style={styles.rootFooter}>
-      <View style={styles.itemFooter}>
+      <Icon customStyle={styles.itemFooter}>
         <IconFontAwesome5 name="home" size={23} color={IconColors.iconBlue} />
         <Text style={[styles.rootFooterText, { color: IconColors.iconBlue }]}>
           Home
         </Text>
-      </View>
-      <View style={styles.itemFooter}>
+      </Icon>
+      <Icon customStyle={styles.itemFooter}>
         <IconFontAwesome5 name="globe" size={23} color={IconColors.iconGreen} />
         <Text style={[styles.rootFooterText, { color: IconColors.iconGreen }]}>
           Jobs
         </Text>
-      </View>
-      <View
+      </Icon>
+      <TouchableOpacity
         style={[
           styles.itemFooter,
           {
@@ -38,8 +39,8 @@ export default function Footer() {
         >
           Profile
         </Text>
-      </View>
-      <View style={styles.itemFooter}>
+      </TouchableOpacity>
+      <Icon customStyle={styles.itemFooter}>
         <IconFontAwesome5
           name="address-card"
           size={23}
@@ -48,8 +49,8 @@ export default function Footer() {
         <Text style={[styles.rootFooterText, { color: IconColors.iconOrange }]}>
           Post Job
         </Text>
-      </View>
-      <View style={styles.itemFooter}>
+      </Icon>
+      <Icon customStyle={styles.itemFooter}>
         <IconFontAwesome5
           name="building"
           size={23}
@@ -58,7 +59,7 @@ export default function Footer() {
         <Text style={[styles.rootFooterText, { color: IconColors.iconPink }]}>
           Firms
         </Text>
-      </View>
+      </Icon>
     </View>
   );
 }
@@ -79,6 +80,10 @@ const styles = StyleSheet.create({
   itemFooter: {
     flexDirection: "column",
     alignItems: "center",
+    padding: 0,
+    marginHorizontal: 0,
+    width: "auto",
+    height: "auto",
   },
   rootFooterText: {
     color: "white",

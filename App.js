@@ -9,6 +9,7 @@ import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 import IconProfile from "./components/home/IconProfile";
+import Jobs from "./components/job/Jobs";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,22 @@ export default function App() {
       <Provider store={store}>
         <Stack.Navigator>
           <Stack.Screen
+            name="Jobs"
+            component={Jobs}
+            options={{
+              presentation: "fullScreenModal",
+              headerShown: true,
+              headerTitleAlign: "center",
+              title: "Jobs",
+              headerLeft: () => (
+                <IconProfile
+                  customStyle={{ left: -20 }}
+                  iconName="arrow-left"
+                />
+              ),
+            }}
+          />
+          <Stack.Screen
             name="Home"
             component={HomeScreen}
             options={{
@@ -25,7 +42,9 @@ export default function App() {
               headerShown: true,
               headerTitleAlign: "center",
               title: "Home",
-              headerLeft: () => <IconProfile customStyle={{ left: -20 }} />,
+              headerLeft: () => (
+                <IconProfile customStyle={{ left: -20 }} iconName="bars" />
+              ),
             }}
           />
           <Stack.Screen
@@ -44,14 +63,6 @@ export default function App() {
               headerShown: false,
             }}
           />
-          {/* <Stack.Screen */}
-          {/*   name="Profile" */}
-          {/*   component={ProfileScreen} */}
-          {/*   options={{ */}
-          {/*     presentation: "modal", */}
-          {/*     headerShown: false, */}
-          {/*   }} */}
-          {/* /> */}
           <Stack.Screen
             name="ForgotPassword"
             component={ForgotPasswordScreen}
