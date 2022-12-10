@@ -2,9 +2,9 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Colors } from "../../constants/colors";
 
-const JobTitle = ({ textMuted, text }) => {
+const JobTitle = ({ textMuted, text, styleContainer }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, styleContainer]}>
       <Text style={styles.textMuted}>{textMuted}</Text>
       <Text style={styles.text}>{text}</Text>
     </View>

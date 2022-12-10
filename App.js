@@ -10,6 +10,7 @@ import HomeScreen from "./screens/HomeScreen";
 import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 import IconProfile from "./components/home/IconProfile";
 import Jobs from "./components/job/Jobs";
+import PostJob from "./components/job/PostJob";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,22 @@ export default function App() {
     <NavigationContainer>
       <Provider store={store}>
         <Stack.Navigator>
+          <Stack.Screen
+            name="Post a Job"
+            component={PostJob}
+            options={{
+              presentation: "fullScreenModal",
+              headerShown: true,
+              headerTitleAlign: "center",
+              title: "Post a Job",
+              headerLeft: () => (
+                <IconProfile
+                  customStyle={{ left: -20 }}
+                  iconName="arrow-left"
+                />
+              ),
+            }}
+          />
           <Stack.Screen
             name="Jobs"
             component={Jobs}
