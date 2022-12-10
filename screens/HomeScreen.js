@@ -204,15 +204,6 @@ const HomeScreen = () => {
         }
       />
 
-      {/* <View style={styles.rootHeader}> */}
-      {/*   <TouchableOpacity onPress={toggleShowProfile}> */}
-      {/*     <IconFontAwesome name="bars" size={18} /> */}
-      {/*   </TouchableOpacity> */}
-      {/*   <View style={styles.rootHeaderTextContainer}> */}
-      {/*     <Text style={styles.rootHeaderText}>PaySit</Text> */}
-      {/*   </View> */}
-      {/* </View> */}
-
       <ScrollView style={styles.rootBody}>
         <ImageBackground
           source={require("../assets/images/home-header.jpg")}
