@@ -5,13 +5,9 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
-import { Modalize } from "react-native-modalize";
-import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import IconMaterialIcons from "react-native-vector-icons/MaterialIcons";
 import ApplyJob from "../components/home/ApplyJob";
 import Category from "../components/home/Category";
@@ -22,13 +18,12 @@ import LatestJobs from "../components/home/LatestJobs";
 import TopEmployers from "../components/home/TopEmployers";
 import Card from "../components/ui/Card";
 import { Colors, IconColors } from "../constants/colors";
+import { useDispatch, useSelector } from "react-redux";
+import { selectShowProfile, setShowProfile } from "../features/profile";
 
 const HomeScreen = () => {
-  const modalizeRef = useRef(null);
-  const [showProfile, setShowProfile] = useState(false);
-  const toggleShowProfile = () => {
-    setShowProfile(!showProfile);
-  };
+  const showProfile = useSelector(selectShowProfile);
+  const dispatch = useDispatch();
   const categories = [
     {
       id: Math.random().toString(),
@@ -204,8 +199,11 @@ const HomeScreen = () => {
     <SafeAreaView style={styles.rootScreen}>
       <Profile
         showProfile={showProfile}
-        toggleShowProfile={toggleShowProfile}
+        toggleShowProfile={() =>
+          dispatch(setShowProfile({ showProfile: false }))
+        }
       />
+
       {/* <View style={styles.rootHeader}> */}
       {/*   <TouchableOpacity onPress={toggleShowProfile}> */}
       {/*     <IconFontAwesome name="bars" size={18} /> */}

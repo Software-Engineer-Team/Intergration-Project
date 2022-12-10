@@ -1,13 +1,14 @@
 import React from "react";
 import {
+  Dimensions,
   ImageBackground,
-  Modal,
-  SafeAreaView,
+  Platform,
   ScrollView,
   StyleSheet,
-  Text,
   View,
 } from "react-native";
+
+import Modal from "react-native-modal";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import { Colors } from "../../constants/colors";
 import { Sizes } from "../../constants/sizes";
@@ -89,10 +90,12 @@ export default function Profile({ showProfile, toggleShowProfile }) {
   };
   return (
     <Modal
-      visible={showProfile}
-      animationType="fade"
-      transparent={true}
-      /* statusBarTranslucent={true} */
+      isVisible={showProfile}
+      animationIn="fadeInLeft"
+      animationOut="fadeOutLeft"
+      backdropTransitionOutTiming={0}
+      style={{ margin: 0 }}
+      coverScreen={true}
     >
       <View style={styles.container}>
         <View style={styles.content}>
@@ -158,14 +161,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    backgroundColor: Colors.backdropAlt,
     flex: 1,
     zIndex: -1,
   },
   content: {
     flex: 1,
     width: "85%",
-    height: "100%",
     backgroundColor: "white",
     flexDirection: "column",
   },
