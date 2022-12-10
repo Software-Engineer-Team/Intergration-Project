@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Colors } from "../../constants/colors";
 
-export default function PostJobInput({
+export default function FirmInput({
   type,
   title,
   placeholder,

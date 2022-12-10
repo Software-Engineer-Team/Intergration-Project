@@ -2,15 +2,35 @@ import React from "react";
 import { ScrollView, StyleSheet, Text } from "react-native";
 import { Colors } from "../../constants/colors";
 import JobTitle from "../home/JobTitle";
+import Button from "../ui/Button";
 import Card from "../ui/Card";
+import FirmDetail from "./FirmDetail";
 import PostJobDetail from "./PostJobDetail";
 
 export default function PostJob() {
   return (
     <Card>
-      <JobTitle textMuted="JOBS" text="DETAILS" styleContainer={{ flex: 0 }} />
       <ScrollView showsVerticalScrollIndicator={false}>
+        <JobTitle
+          textMuted="JOBS"
+          text="DETAILS"
+          styleContainer={{ flex: 0 }}
+        />
         <PostJobDetail />
+        <JobTitle
+          textMuted="COMPANY"
+          text="DETAILS"
+          styleContainer={{ flex: 0 }}
+        />
+        <FirmDetail style={{ marginBottom: 20 }} />
+
+        <Button
+          title={"Submit a Job"}
+          color={Colors.buttonColor}
+          onPress={() => {}}
+          buttonStyle={{ borderRadius: 0 }}
+          textStyle={{ fontSize: 15 }}
+        />
       </ScrollView>
     </Card>
   );
