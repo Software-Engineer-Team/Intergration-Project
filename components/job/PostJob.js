@@ -23,7 +23,6 @@ export default function PostJob() {
           styleContainer={{ flex: 0 }}
         />
         <FirmDetail style={{ marginBottom: 20 }} />
-
         <Button
           title={"Submit a Job"}
           color={Colors.buttonColor}

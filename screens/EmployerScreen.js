@@ -5,7 +5,40 @@ import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import { Colors } from "../constants/colors";
 import Card from "../components/ui/Card";
 import { Sizes } from "../constants/sizes";
+import Function from "../components/employer/Function";
 export default function EmployerScreen() {
+  const functionsEmployer = [
+    {
+      id: Math.random().toString(),
+      imgUrl: require("../assets/images/job-listing.png"),
+      text: "Job Listing",
+    },
+    {
+      id: Math.random().toString(),
+      imgUrl: require("../assets/images/candidate.png"),
+      text: "Candidate",
+    },
+    {
+      id: Math.random().toString(),
+      imgUrl: require("../assets/images/package.png"),
+      text: "Package",
+    },
+    {
+      id: Math.random().toString(),
+      imgUrl: require("../assets/images/settings.png"),
+      text: "Settings",
+    },
+    {
+      id: Math.random().toString(),
+      imgUrl: require("../assets/images/order-history.png"),
+      text: "Order History",
+    },
+    {
+      id: Math.random().toString(),
+      imgUrl: require("../assets/images/message.png"),
+      text: "Message",
+    },
+  ];
   return (
     <Card cardStyle={styles.container}>
       <View style={styles.content}>
@@ -75,6 +108,19 @@ export default function EmployerScreen() {
           </View>
         </View>
       </View>
+
+      <View style={styles.functionContainer}>
+        {functionsEmployer?.map((item) => {
+          return (
+            <Function
+              onPress={() => {}}
+              imgUrl={item.imgUrl}
+              text={item.text}
+              key={item.id}
+            />
+          );
+        })}
+      </View>
     </Card>
   );
 }
@@ -118,7 +164,6 @@ const styles = StyleSheet.create({
   },
   type: {
     flexDirection: "row",
-    /* backgroundColor: "blue", */
     width: 100,
   },
 
@@ -128,5 +173,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     left: -15,
     bottom: 2,
+  },
+  functionContainer: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    flexWrap: "wrap",
   },
 });
