@@ -29,6 +29,8 @@ export const IconColors = {
   iconBlueAlt: "#8274fb",
   iconGreen: "#7cb92e",
   iconBlack: "#000000",
+  iconBrown: "#333333",
+  iconBrownAlt: "#666666",
   iconOrange: "#f7751f",
   iconPink: "#f64e89",
   iconYellow: "#fbbe5d",

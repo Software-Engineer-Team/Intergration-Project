@@ -14,7 +14,7 @@ export default function EmployerDetail() {
   return (
     <View style={styles.content}>
       <ImageBackground
-        source={require("../../assets/images/wipro.jpg")}
+        source={require("../../assets/images/dell.png")}
         style={{
           width: 120,
           height: 100,

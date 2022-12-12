@@ -3,7 +3,12 @@ import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import { Colors } from "../../constants/colors";
 import Button from "../ui/Button";
-export default function TopEmployers({ imgUrl, companyName, numOfJobs }) {
+export default function TopEmployers({
+  imgUrl,
+  companyName,
+  numOfJobs,
+  onPress,
+}) {
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -28,6 +33,7 @@ export default function TopEmployers({ imgUrl, companyName, numOfJobs }) {
           paddingVertical: 2,
           paddingHorizontal: 0,
         }}
+        onPress={onPress}
       />
     </View>
   );

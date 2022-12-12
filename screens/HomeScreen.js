@@ -23,7 +23,7 @@ import { selectShowProfile, setShowProfile } from "../features/profile";
 
 const HomeScreen = () => {
   const showProfile = useSelector(selectShowProfile);
-  console.log("showProfile", showProfile);
+  const { navigate } = useNavigation();
   const dispatch = useDispatch();
   const categories = [
     {
@@ -229,7 +229,7 @@ const HomeScreen = () => {
 
         {/* // TOP EMPLOYERS */}
         <Card>
-          <JobTitle textMuted="TOP" text="EMPLOYERS" />
+          <JobTitle textMuted="JOB" text="CATEGORIES" />
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -307,6 +307,9 @@ const HomeScreen = () => {
                 numOfJobs={item.numOfJobs}
                 companyName={item.companyName}
                 key={item.id}
+                onPress={() => {
+                  navigate("Employer");
+                }}
               />
             ))}
           </ScrollView>

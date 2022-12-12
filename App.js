@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -21,19 +20,6 @@ export default function App() {
     <NavigationContainer>
       <Provider store={store}>
         <Stack.Navigator>
-          <Stack.Screen
-            name="Employer"
-            component={EmployerScreen}
-            options={{
-              presentation: "fullScreenModal",
-              headerShown: true,
-              headerTitleAlign: "center",
-              title: "Employer",
-              headerLeft: () => (
-                <IconProfile customStyle={{ left: -20 }} iconName="bars" />
-              ),
-            }}
-          />
           <Stack.Screen
             name="Login"
             component={LoginScreen}
@@ -124,10 +110,21 @@ export default function App() {
               ),
             }}
           />
+          <Stack.Screen
+            name="Employer"
+            component={EmployerScreen}
+            options={{
+              presentation: "fullScreenModal",
+              headerShown: true,
+              headerTitleAlign: "center",
+              title: "Employer",
+              headerLeft: () => (
+                <IconProfile customStyle={{ left: -20 }} iconName="bars" />
+              ),
+            }}
+          />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({});

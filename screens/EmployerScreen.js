@@ -5,6 +5,7 @@ import Function from "../components/employer/Function";
 import JobTitle from "../components/home/JobTitle";
 import Member from "../components/employer/Member";
 import EmployerDetail from "../components/employer/EmployerDetail";
+import EmployerFooter from "../components/employer/EmployerFooter";
 export default function EmployerScreen() {
   const functionsEmployer = [
     {
@@ -86,6 +87,7 @@ export default function EmployerScreen() {
           })}
         </ScrollView>
       </View>
+      <EmployerFooter />
     </Card>
   );
 }
@@ -94,11 +96,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
-    padding: 10,
+    paddingTop: 10,
   },
   functionContainer: {
-    /* flex: 1, */
-    marginBottom: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
