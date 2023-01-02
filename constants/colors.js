@@ -22,6 +22,7 @@ export const Colors = {
   rippleColor: "rgba(0, 0, 0, 0.2)",
   lineColor: "rgba(0, 0, 0, 0.2)",
   skillsBg: "#e5e5e5",
+  loadingBg: "rgba(0,0,0,0.3)",
 };
 
 export const IconColors = {

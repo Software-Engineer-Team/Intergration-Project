@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import SocialLogin from "../components/login/SocialLogin";
 import Button from "../components/ui/Button";
@@ -8,9 +8,16 @@ import Input from "../components/ui/Input";
 import TextField from "../components/ui/TextField";
 import Title from "../components/ui/Title";
 import { Colors } from "../constants/colors";
+import { postData } from "../utils/fetch-utils";
 
 const LoginScreen = () => {
+  const [email, onChangeEmail] = useState("");
+  const [password, onChangePassword] = useState("");
   const { navigate } = useNavigation();
+  const logInHandler = async () => {
+    /* const data = await postData({email, password}, process.env.REACT_APP_ENDPOINT_SERVER); */
+  };
+
   return (
     <ImageBg source={require("../assets/images/login-bg.jpg")}>
       <SafeAreaView style={styles.container}>
@@ -19,11 +26,17 @@ const LoginScreen = () => {
           <Input
             placeholder={"johndoe@gmail.com"}
             textContentType={"emailAddress"}
+            onChangeText={onChangeEmail}
+            autoCapitalize="none"
+            value={email}
             label={"E-mail"}
           />
           <Input
             placeholder={"*********"}
             textContentType={"password"}
+            onChangeText={onChangePassword}
+            autoCapitalize="none"
+            value={password}
             label={"Password"}
           />
 

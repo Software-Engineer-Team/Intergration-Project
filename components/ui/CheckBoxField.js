@@ -2,15 +2,23 @@ import React, { useState } from "react";
 import Checkbox from "expo-checkbox";
 import { StyleSheet, Text, View } from "react-native";
 import { Colors } from "../../constants/colors";
-export default function CheckBoxField({ title }) {
-  const [isChecked, setIsChecked] = useState(false);
+export default function CheckBoxField({
+  title,
+  role,
+  removeTypeUser = () => {},
+  toggleTypeUser = () => {},
+}) {
+  /* const [isChecked, setIsChecked] = useState(false); */
   return (
     <View style={styles.container}>
       <Checkbox
         disabled={false}
-        value={isChecked}
-        onValueChange={(newValue) => setIsChecked(newValue)}
-        color={isChecked ? Colors.checkBoxColor : undefined}
+        value={role}
+        onValueChange={(newValue) => {
+          removeTypeUser();
+          toggleTypeUser(newValue);
+        }}
+        color={role ? Colors.checkBoxColor : undefined}
         style={styles.checkbox}
       />
       <Text style={styles.text}>{title}</Text>
