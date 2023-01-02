@@ -12,9 +12,9 @@ export default function FirmDetail({ style }) {
         placeholder="Enter firm name"
       />
       <FirmInput
-        type="FIRM-NAME"
-        title="Company Website"
-        placeholder="https://"
+        type="FIRM-ADDRESS"
+        title="Company Address"
+        placeholder="Enter firm address"
       />
       <FirmInput
         type="FIRM-DESCRIPTION"

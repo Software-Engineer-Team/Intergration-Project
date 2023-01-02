@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
+import { useSelector } from "react-redux";
 import { Colors } from "../../constants/colors";
+import { selectUser } from "../../features/user";
 
 export default function FirmInput({
   type,
@@ -9,6 +11,21 @@ export default function FirmInput({
   textAreaStyle,
   textArea,
 }) {
+  const user = useSelector(selectUser);
+  console.log(user);
+  const textChangeHandler = (text) => {
+    console.log(text);
+    switch (type) {
+      case "FIRM-NAME":
+        break;
+      case "FIRM-ADDRESS":
+        break;
+      case "FIRM-DESCRIPTION":
+        break;
+      default:
+        break;
+    }
+  };
   return (
     <View>
       <View style={styles.titleContainer}>
@@ -19,7 +36,7 @@ export default function FirmInput({
       <View style={styles.inputContainer}>
         <TextInput
           placeholder={placeholder}
-          onChangeText={() => {}}
+          onChangeText={textChangeHandler}
           style={[styles.textInput, textAreaStyle]}
           placeholderTextColor={Colors.textMuted}
           multiline={textArea}

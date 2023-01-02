@@ -4,12 +4,19 @@ import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { Colors } from "../../constants/colors";
 import { Sizes } from "../../constants/sizes";
 import Button from "../ui/Button";
-export default function Job({ onPress }) {
+export default function Job({
+  title,
+  description,
+  requirements,
+  address,
+  experience,
+  onPress,
+}) {
   return (
     <View style={styles.container}>
       <View style={{ flex: 1 }}>
         <View style={styles.titleContainer}>
-          <Text style={styles.text}>Title</Text>
+          <Text style={styles.text}>{title}</Text>
         </View>
         <View style={styles.yearAndLocationContainer}>
           <View style={styles.yearAndLocation}>
@@ -19,7 +26,7 @@ export default function Job({ onPress }) {
               color={Colors.textMuted}
             />
             <View style={{ marginLeft: 20 }}>
-              <Text style={styles.iconText}>2-5 years</Text>
+              <Text style={styles.iconText}>{experience} years</Text>
             </View>
           </View>
           <View style={styles.yearAndLocation}>
@@ -29,21 +36,20 @@ export default function Job({ onPress }) {
               color={Colors.textMuted}
             />
             <View style={{ marginLeft: 20 }}>
-              <Text style={styles.iconText}>Viet Nam</Text>
+              <Text style={styles.iconText}>{address}</Text>
             </View>
           </View>
         </View>
         <View style={styles.description}>
           <Text style={[styles.text, styles.descriptionText]} numberOfLines={3}>
-            TEST
-            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm0000000000000000000000000000000000000000000000000000000000000000000000000000
+            {description}
           </Text>
         </View>
         <View style={styles.iconContainer}>
           <IconFontAwesome5 name="tags" size={18} color={Colors.textMuted} />
           <View style={{ marginLeft: 20 }}>
             <Text style={styles.iconText} numberOfLines={1}>
-              "TEST111111111111111mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
+              {requirements}
             </Text>
           </View>
         </View>

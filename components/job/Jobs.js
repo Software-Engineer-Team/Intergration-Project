@@ -1,26 +1,71 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { Colors } from "../../constants/colors";
 import Card from "../ui/Card";
 import Job from "./Job";
 export default function Jobs() {
   const { navigate } = useNavigation();
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+    fetch("https://laravel-api.herokuapp.com/api/jobs/")
+      .then((res) => res.json())
+      .then((data) => {
+        setJobs(data);
+        /* const latestJobsData = jobs.map( */
+        /*   ({ id, title, address, description, requirements }) => { */
+        /*     return { */
+        /*       id, */
+        /*       imgUrl: undefined, */
+        /*       jobName: title || "SEO Expert", */
+        /*       companyAddress: address || "Google Inc, Manchester, UK", */
+        /*       languages: requirements || "javascript,React native,React js", */
+        /*     }; */
+        /*   } */
+        /* ); */
+      });
+  }, []);
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <Card cardStyle={{ marginVertical: 10 }}>
-        {Array(10)
-          .fill(undefined)
-          .map((_el, idx) => {
+        {jobs.map(
+          ({
+            id,
+            title,
+            address,
+            description,
+            requirements,
+            experience,
+            updated_at,
+            min_salary,
+            max_salary,
+          }) => {
             return (
               <Job
-                key={idx}
+                key={id}
+                title={title}
+                address={address || "Unknown"}
+                description={description || "Unknown"}
+                requirements={requirements || "Unknown"}
+                experience={experience || "1-2"}
                 onPress={() => {
-                  navigate("JobDetail", {});
+                  navigate("JobDetail", {
+                    title,
+                    address,
+                    description,
+                    requirements,
+                    experience,
+                    updated_at,
+                    min_salary,
+                    max_salary,
+                  });
                 }}
               />
             );
-          })}
+          }
+        )}
       </Card>
     </ScrollView>
   );

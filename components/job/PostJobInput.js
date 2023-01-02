@@ -1,6 +1,19 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { Colors } from "../../constants/colors";
+import {
+  selectJobState,
+  setAddress,
+  setDescription,
+  setEmail,
+  setExperience,
+  setMaxSalary,
+  setMinSalary,
+  setRequirements,
+  setTitle,
+  setType,
+} from "../../features/job";
 
 export default function PostJobInput({
   type,
@@ -9,6 +22,42 @@ export default function PostJobInput({
   textAreaStyle,
   textArea,
 }) {
+  const dispatch = useDispatch();
+
+  const textChangeHandler = (text) => {
+    switch (type) {
+      case "JOB-TITLE":
+        dispatch(setTitle({ title: text }));
+        break;
+      case "JOB-LOCATION":
+        dispatch(setAddress({ address: text }));
+        break;
+      case "JOB-TYPE":
+        dispatch(setType({ type: text }));
+        break;
+      case "JOB-CATEGORY":
+        dispatch(setRequirements({ category: text }));
+        break;
+      case "JOB-EXPERIENCE":
+        dispatch(setExperience({ experience: text }));
+        break;
+      case "JOB-MIN_SALARY":
+        dispatch(setMinSalary({ min_salary: parseInt(text) }));
+        break;
+      case "JOB-MAX_SALARY":
+        dispatch(setMaxSalary({ max_salary: parseInt(text) }));
+        break;
+      case "JOB-CONTACT":
+        dispatch(setEmail({ email: text }));
+        break;
+      case "JOB-DESCRIPTION":
+        dispatch(setDescription({ description: text }));
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <View>
       <View style={styles.titleContainer}>
@@ -19,7 +68,7 @@ export default function PostJobInput({
       <View style={styles.inputContainer}>
         <TextInput
           placeholder={placeholder}
-          onChangeText={() => {}}
+          onChangeText={textChangeHandler}
           style={[styles.textInput, textAreaStyle]}
           placeholderTextColor={Colors.textMuted}
           multiline={textArea}

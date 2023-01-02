@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   ImageBackground,
   SafeAreaView,
@@ -24,6 +24,9 @@ import { selectShowProfile, setShowProfile } from "../features/profile";
 const HomeScreen = () => {
   const showProfile = useSelector(selectShowProfile);
   const { navigate } = useNavigation();
+  const [featuredJobs, setFeaturedJobs] = useState([]);
+  const [latestJobs, setLatestJobs] = useState([]);
+  const [topJobs, setTopJobs] = useState([]);
   const dispatch = useDispatch();
   const categories = [
     {
@@ -82,119 +85,161 @@ const HomeScreen = () => {
     },
   ];
 
-  const featuredJobs = [
-    {
-      id: Math.random().toString(),
-      backgroundBox: { backgroundColor: "#627aee" },
-      backgroundContainer: { backgroundColor: IconColors.iconBlue },
-      textDescription1: "IT Department Manager",
-      textDescription2: "Infosys Ltd",
-      textDescription3: "Delhi",
-    },
-    {
-      id: Math.random().toString(),
-      backgroundBox: { backgroundColor: "#91c352" },
-      backgroundContainer: { backgroundColor: IconColors.iconGreen },
-      textDescription1: "IT Department Manager",
-      textDescription2: "Infosys Ltd",
-      textDescription3: "Delhi",
-    },
-    {
-      id: Math.random().toString(),
-      backgroundBox: { backgroundColor: "#fcc575" },
-      backgroundContainer: { backgroundColor: IconColors.iconYellow },
-      textDescription1: "IT Department Manager",
-      textDescription2: "Infosys Ltd",
-      textDescription3: "Delhi",
-    },
-    {
-      id: Math.random().toString(),
-      backgroundBox: { backgroundColor: "#f7924e" },
-      backgroundContainer: { backgroundColor: IconColors.iconOrange },
-      textDescription1: "IT Department Manager",
-      textDescription2: "Infosys Ltd",
-      textDescription3: "Delhi",
-    },
-    {
-      id: Math.random().toString(),
-      backgroundBox: { backgroundColor: "#9b92fb" },
-      backgroundContainer: { backgroundColor: IconColors.iconBlueAlt },
-      textDescription1: "IT Department Manager",
-      textDescription2: "Infosys Ltd",
-      textDescription3: "Delhi",
-    },
-  ];
+  useEffect(() => {
+    fetch("https://laravel-api.herokuapp.com/api/jobs/")
+      .then((res) => res.json())
+      .then((jobs) => {
+        const featuredJobsData = jobs.map(({ id, title }) => {
+          return {
+            id,
+            backgroundBox: { backgroundColor: "#627aee" },
+            backgroundContainer: { backgroundColor: IconColors.iconBlue },
+            textDescription1: title || "IT Department Manager",
+            textDescription2: "Infosys Ltd",
+            textDescription3: "Delhi",
+          };
+        });
 
-  const latestJobs = [
-    {
-      id: Math.random().toString(),
-      imgUrl: undefined,
-      jobName: "SEO Expert",
-      companyAddress: "Google Inc, Manchester, UK",
-      languages: "javascript,React native,React js",
-    },
-    {
-      id: Math.random().toString(),
-      imgUrl: undefined,
-      jobName: "Web Designer",
-      companyAddress: "Appple Inc,Newyork,USA",
-      languages: "Php Develper,Asp,Asp.net",
-    },
-    {
-      id: Math.random().toString(),
-      imgUrl: require("../assets/images/dell.png"),
-      jobName: "Project Manager",
-      companyAddress: "Dell,Bangalore",
-      languages: "Full Time/Permanant-canoncity",
-    },
-    {
-      id: Math.random().toString(),
-      imgUrl: require("../assets/images/linkedin.jpg"),
-      jobName: "Senior PHP Developer",
-      companyAddress: "LinkedIn Corp,Chennai",
-      languages: "Php,React js",
-    },
-    {
-      id: Math.random().toString(),
-      imgUrl: require("../assets/images/wipro.jpg"),
-      jobName: "Project Manager",
-      companyAddress: "Wipro corp,Chennai",
-      languages: "javascript,React native,React js",
-    },
-  ];
+        setFeaturedJobs(featuredJobsData);
 
-  const topJobs = [
-    {
-      id: Math.random().toString(),
-      imgUrl: require("../assets/images/apple.jpeg"),
-      companyName: "Apple Inc",
-      numOfJobs: "45584 jobs",
-    },
-    {
-      id: Math.random().toString(),
-      imgUrl: require("../assets/images/google.jpeg"),
-      companyName: "Google Inc",
-      numOfJobs: "45584 jobs",
-    },
-    {
-      id: Math.random().toString(),
-      imgUrl: require("../assets/images/linkedin.png"),
-      companyName: "Google Inc",
-      numOfJobs: "45584 jobs",
-    },
-    {
-      id: Math.random().toString(),
-      imgUrl: require("../assets/images/dell.jpeg"),
-      companyName: "Dell Inc",
-      numOfJobs: "45584 jobs",
-    },
-    {
-      id: Math.random().toString(),
-      imgUrl: require("../assets/images/wipro-company.png"),
-      companyName: "Wipro Inc",
-      numOfJobs: "45584 jobs",
-    },
-  ];
+        const latestJobsData = jobs.map(
+          ({ id, title, address, requirements }) => {
+            return {
+              id,
+              imgUrl: undefined,
+              jobName: title || "SEO Expert",
+              companyAddress: address || "Google Inc, Manchester, UK",
+              languages: requirements || "javascript,React native,React js",
+            };
+          }
+        );
+        setLatestJobs(latestJobsData);
+
+        const topJobsData = jobs.map(({ id, company }) => {
+          return {
+            id,
+            imgUrl: require("../assets/images/apple.jpeg"),
+            companyName: company?.name || "Apple Inc",
+            numOfJobs: "45584 jobs",
+          };
+        });
+        setTopJobs(topJobsData);
+      });
+  }, []);
+
+  /* const featuredJobs = [ */
+  /* { */
+  /*   id: Math.random().toString(), */
+  /*   backgroundBox: { backgroundColor: "#627aee" }, */
+  /*   backgroundContainer: { backgroundColor: IconColors.iconBlue }, */
+  /*   textDescription1: "IT Department Manager", */
+  /*   textDescription2: "Infosys Ltd", */
+  /*   textDescription3: "Delhi", */
+  /* }, */
+  /*   { */
+  /*     id: Math.random().toString(), */
+  /*     backgroundBox: { backgroundColor: "#91c352" }, */
+  /*     backgroundContainer: { backgroundColor: IconColors.iconGreen }, */
+  /*     textDescription1: "IT Department Manager", */
+  /*     textDescription2: "Infosys Ltd", */
+  /*     textDescription3: "Delhi", */
+  /*   }, */
+  /*   { */
+  /*     id: Math.random().toString(), */
+  /*     backgroundBox: { backgroundColor: "#fcc575" }, */
+  /*     backgroundContainer: { backgroundColor: IconColors.iconYellow }, */
+  /*     textDescription1: "IT Department Manager", */
+  /*     textDescription2: "Infosys Ltd", */
+  /*     textDescription3: "Delhi", */
+  /*   }, */
+  /*   { */
+  /*     id: Math.random().toString(), */
+  /*     backgroundBox: { backgroundColor: "#f7924e" }, */
+  /*     backgroundContainer: { backgroundColor: IconColors.iconOrange }, */
+  /*     textDescription1: "IT Department Manager", */
+  /*     textDescription2: "Infosys Ltd", */
+  /*     textDescription3: "Delhi", */
+  /*   }, */
+  /*   { */
+  /*     id: Math.random().toString(), */
+  /*     backgroundBox: { backgroundColor: "#9b92fb" }, */
+  /*     backgroundContainer: { backgroundColor: IconColors.iconBlueAlt }, */
+  /*     textDescription1: "IT Department Manager", */
+  /*     textDescription2: "Infosys Ltd", */
+  /*     textDescription3: "Delhi", */
+  /*   }, */
+  /* ]; */
+
+  /* const latestJobs = [ */
+  /* { */
+  /*   id: Math.random().toString(), */
+  /*   imgUrl: undefined, */
+  /*   jobName: "SEO Expert", */
+  /*   companyAddress: "Google Inc, Manchester, UK", */
+  /*   languages: "javascript,React native,React js", */
+  /* }, */
+  /*   { */
+  /*     id: Math.random().toString(), */
+  /*     imgUrl: undefined, */
+  /*     jobName: "Web Designer", */
+  /*     companyAddress: "Appple Inc,Newyork,USA", */
+  /*     languages: "Php Develper,Asp,Asp.net", */
+  /*   }, */
+  /*   { */
+  /*     id: Math.random().toString(), */
+  /*     imgUrl: require("../assets/images/dell.png"), */
+  /*     jobName: "Project Manager", */
+  /*     companyAddress: "Dell,Bangalore", */
+  /*     languages: "Full Time/Permanant-canoncity", */
+  /*   }, */
+  /*   { */
+  /*     id: Math.random().toString(), */
+  /*     imgUrl: require("../assets/images/linkedin.jpg"), */
+  /*     jobName: "Senior PHP Developer", */
+  /*     companyAddress: "LinkedIn Corp,Chennai", */
+  /*     languages: "Php,React js", */
+  /*   }, */
+  /*   { */
+  /*     id: Math.random().toString(), */
+  /*     imgUrl: require("../assets/images/wipro.jpg"), */
+  /*     jobName: "Project Manager", */
+  /*     companyAddress: "Wipro corp,Chennai", */
+  /*     languages: "javascript,React native,React js", */
+  /*   }, */
+  /* ]; */
+
+  /* const topJobs = [ */
+  /*   { */
+  /*     id: Math.random().toString(), */
+  /*     imgUrl: require("../assets/images/apple.jpeg"), */
+  /*     companyName: "Apple Inc", */
+  /*     numOfJobs: "45584 jobs", */
+  /*   }, */
+  /*   { */
+  /*     id: Math.random().toString(), */
+  /*     imgUrl: require("../assets/images/google.jpeg"), */
+  /*     companyName: "Google Inc", */
+  /*     numOfJobs: "45584 jobs", */
+  /*   }, */
+  /*   { */
+  /*     id: Math.random().toString(), */
+  /*     imgUrl: require("../assets/images/linkedin.png"), */
+  /*     companyName: "Google Inc", */
+  /*     numOfJobs: "45584 jobs", */
+  /*   }, */
+  /*   { */
+  /*     id: Math.random().toString(), */
+  /*     imgUrl: require("../assets/images/dell.jpeg"), */
+  /*     companyName: "Dell Inc", */
+  /*     numOfJobs: "45584 jobs", */
+  /*   }, */
+  /*   { */
+  /*     id: Math.random().toString(), */
+  /*     imgUrl: require("../assets/images/wipro-company.png"), */
+  /*     companyName: "Wipro Inc", */
+  /*     numOfJobs: "45584 jobs", */
+  /*   }, */
+  /* ]; */
 
   return (
     <SafeAreaView style={styles.rootScreen}>
@@ -227,7 +272,7 @@ const HomeScreen = () => {
           </View>
         </ImageBackground>
 
-        {/* // TOP EMPLOYERS */}
+        {/* // JOB CATEGORIES */}
         <Card>
           <JobTitle textMuted="JOB" text="CATEGORIES" />
           <ScrollView

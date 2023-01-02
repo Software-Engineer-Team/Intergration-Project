@@ -1,3 +1,5 @@
+import { useRoute } from "@react-navigation/native";
+import moment from "moment";
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
@@ -6,17 +8,35 @@ import { Sizes } from "../../constants/sizes";
 import Button from "../ui/Button";
 import Line from "../ui/Line";
 export default function JobDetail({ onPress }) {
+  const {
+    params: {
+      title,
+      address,
+      description,
+      requirements,
+      experience,
+      updated_at,
+      min_salary,
+      max_salary,
+    },
+  } = useRoute();
+  console.log(title);
+
   return (
     <ScrollView style={styles.container}>
       <View style={{ flex: 1 }}>
         <View style={styles.titleContainer}>
-          <Text style={styles.text}>Graphics Designer</Text>
+          <Text style={styles.text}>{title}</Text>
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.dateText}>DatePosted: Feb 19.2019</Text>
+          <Text style={styles.dateText}>
+            DatePosted: {moment(updated_at, "YYYYMMDD").fromNow()}
+          </Text>
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.salaryText}>Salary: 4000USD-5000USD</Text>
+          <Text style={styles.salaryText}>
+            Salary: {min_salary}$-{max_salary}$
+          </Text>
         </View>
         <Line lineStyle={{ marginVertical: 15 }} />
         <View style={styles.typeContainer}>
@@ -58,8 +78,7 @@ export default function JobDetail({ onPress }) {
         </View>
         <View style={styles.description}>
           <Text style={[styles.text, styles.descriptionText]}>
-            TEST
-            mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm0000000000000000000000000000000000000000000000000000000000000000000000000000
+            {description}
           </Text>
         </View>
         <Line lineStyle={{ marginVertical: 12 }} />
@@ -71,10 +90,10 @@ export default function JobDetail({ onPress }) {
             <Text style={styles.skillsItem}>React Native</Text>
           </View>
           <View style={styles.skillsContent}>
-            <Text style={styles.skillsItem}>React Native</Text>
+            <Text style={styles.skillsItem}>Java</Text>
           </View>
           <View style={styles.skillsContent}>
-            <Text style={styles.skillsItem}>React Native</Text>
+            <Text style={styles.skillsItem}>XCode</Text>
           </View>
         </ScrollView>
         <Button

@@ -23,19 +23,19 @@ export default function PostJobDetail() {
         placeholder="PHP,Web Designer"
       />
       <PostJobInput
-        type="JOB-EDUCATION-LEVEL"
-        title="Education Level"
-        placeholder="B.E"
-      />
-      <PostJobInput
         type="JOB-EXPERIENCE"
         title="Experience"
         placeholder="2 years"
       />
       <PostJobInput
-        type="JOB-SALARY"
-        title="Salary"
-        placeholder="$2000-$4000"
+        type="JOB-MIN_SALARY"
+        title="Min Salary"
+        placeholder="$2000"
+      />
+      <PostJobInput
+        type="JOB-MAX_SALARY"
+        title="Max Salary"
+        placeholder="$4000"
       />
       <PostJobInput
         type="JOB-CONTACT"
