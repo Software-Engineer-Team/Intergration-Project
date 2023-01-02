@@ -34,7 +34,7 @@ const RegisterScreen = () => {
   };
 
   const registerHandler = async () => {
-    if (validateHandler(name, email, password, retypePassword, terms)) {
+    if (validateHandler({ name, email, password, retypePassword, terms })) {
       let url = REACT_APP_ENDPOINT_SERVER + "/auth/js/register";
       if (isEmployer) {
         url = REACT_APP_ENDPOINT_SERVER + "/auth/companies/register";
@@ -82,7 +82,7 @@ const RegisterScreen = () => {
         }
         navigate("Home");
       } catch (err) {
-        console.log(err);
+        console.error(err);
         showAlert(err);
         setisFetching(false);
       }

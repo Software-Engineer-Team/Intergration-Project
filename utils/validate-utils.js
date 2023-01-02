@@ -1,13 +1,14 @@
 import { showAlert } from "./alert-utils";
 
-export const validateHandler = (
+export const validateHandler = ({
+  type = "Register",
   name,
   email,
   password,
   retypePassword,
-  terms
-) => {
-  if (!name) {
+  terms,
+}) => {
+  if (type === "Register" && !name) {
     showAlert("Please enter your name!");
     return false;
   }
@@ -23,15 +24,15 @@ export const validateHandler = (
     showAlert("Please enter your password!");
     return false;
   }
-  if (!retypePassword) {
+  if (type === "Register" && !retypePassword) {
     showAlert("Please retype your password!");
     return false;
   }
-  if (!terms) {
+  if (type === "Register" && !terms) {
     showAlert("Please agree with our terms and conditions!");
     return false;
   }
-  if (password !== retypePassword) {
+  if (type === "Register" && password !== retypePassword) {
     showAlert("Password does not match!");
     return false;
   }

@@ -9,13 +9,68 @@ import TextField from "../components/ui/TextField";
 import Title from "../components/ui/Title";
 import { Colors } from "../constants/colors";
 import { postData } from "../utils/fetch-utils";
+import { REACT_APP_ENDPOINT_SERVER } from "@env";
+import { showAlert } from "../utils/alert-utils";
+import { useDispatch } from "react-redux";
+import { setUser } from "../features/user";
+import Loader from "../components/ui/Loader";
+import { validateHandler } from "../utils/validate-utils";
 
 const LoginScreen = () => {
   const [email, onChangeEmail] = useState("");
   const [password, onChangePassword] = useState("");
   const { navigate } = useNavigation();
+  const dispatch = useDispatch();
+  const [isFetching, setisFetching] = useState(false);
   const logInHandler = async () => {
-    /* const data = await postData({email, password}, process.env.REACT_APP_ENDPOINT_SERVER); */
+    if (validateHandler({ email, password, type: "Login" })) {
+      setisFetching(true);
+      try {
+        const resMember = await postData(
+          { email, password },
+          REACT_APP_ENDPOINT_SERVER + "/auth/js/login"
+        );
+        if (resMember.message) {
+          const resEmployer = await postData(
+            { email, password },
+            REACT_APP_ENDPOINT_SERVER + "/auth/companies/login"
+          );
+          if (resEmployer.message) {
+            setisFetching(false);
+            return showAlert(resEmployer.message);
+          }
+          const { data, token } = resEmployer;
+          dispatch(
+            setUser({
+              name: data.name,
+              email: data.email,
+              role: "Employer",
+              id: data.id,
+              token,
+            })
+          );
+          setisFetching(false);
+          return navigate("Home");
+        } else {
+          const { job_seeker, token } = resMember;
+          dispatch(
+            setUser({
+              name: job_seeker.name,
+              email: job_seeker.email,
+              id: job_seeker.id,
+              role: "Member",
+              token,
+            })
+          );
+          setisFetching(false);
+          return navigate("Home");
+        }
+      } catch (err) {
+        console.error(err);
+        showAlert(err);
+        setisFetching(false);
+      }
+    }
   };
 
   return (
@@ -51,9 +106,7 @@ const LoginScreen = () => {
           <Button
             title={"Sign In"}
             color={Colors.buttonColor}
-            onPress={() => {
-              navigate("Home");
-            }}
+            onPress={logInHandler}
           />
           <TextField
             title={"Don't have an account? SignUp"}
@@ -62,6 +115,8 @@ const LoginScreen = () => {
               navigate("Register");
             }}
           />
+
+          {isFetching && <Loader />}
 
           <SocialLogin />
         </View>
