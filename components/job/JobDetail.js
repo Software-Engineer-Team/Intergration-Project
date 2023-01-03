@@ -47,7 +47,7 @@ export default function JobDetail({ onPress }) {
               color={Colors.textMuted}
             />
             <View style={{ marginLeft: 20 }}>
-              <Text style={styles.iconText}>Viet Nam</Text>
+              <Text style={styles.iconText}>Full Time</Text>
             </View>
           </View>
 

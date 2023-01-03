@@ -68,6 +68,7 @@ const RegisterScreen = () => {
               token,
             })
           );
+          navigate("Home");
         } else {
           const { data, token } = res;
           dispatch(
@@ -79,8 +80,8 @@ const RegisterScreen = () => {
               token,
             })
           );
+          navigate("Employer");
         }
-        navigate("Home");
       } catch (err) {
         console.error(err);
         showAlert(err);
