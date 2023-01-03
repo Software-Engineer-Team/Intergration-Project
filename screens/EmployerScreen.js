@@ -6,7 +6,9 @@ import JobTitle from "../components/home/JobTitle";
 import Member from "../components/employer/Member";
 import EmployerDetail from "../components/employer/EmployerDetail";
 import EmployerFooter from "../components/employer/EmployerFooter";
+import { useNavigation } from "@react-navigation/native";
 export default function EmployerScreen() {
+  const { navigate } = useNavigation();
   const functionsEmployer = [
     {
       id: Math.random().toString(),
@@ -61,6 +63,19 @@ export default function EmployerScreen() {
       imgUrl: require("../assets/images/member-1.png"),
     },
   ];
+
+  const navigationHandler = (type) => {
+    switch (type) {
+      case "Job Listing":
+        break;
+      case "Candidate":
+        navigate("Candidate Resumes");
+        break;
+
+      default:
+        break;
+    }
+  };
   return (
     <Card cardStyle={styles.container}>
       <EmployerDetail />
@@ -69,7 +84,9 @@ export default function EmployerScreen() {
         {functionsEmployer?.map((item) => {
           return (
             <Function
-              onPress={() => {}}
+              onPress={() => {
+                navigationHandler(item.text);
+              }}
               imgUrl={item.imgUrl}
               text={item.text}
               key={item.id}

@@ -13,6 +13,7 @@ import PostJob from "./components/job/PostJob";
 import JobDetail from "./components/job/JobDetail";
 import EmployerScreen from "./screens/EmployerScreen";
 import CandidateDetail from "./components/employer/CandidateDetail";
+import ResumesScreen from "./screens/ResumesScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -121,6 +122,22 @@ export default function App() {
               title: "Employer",
               headerLeft: () => (
                 <IconProfile customStyle={{ left: -20 }} iconName="bars" />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name="Candidate Resumes"
+            component={ResumesScreen}
+            options={{
+              presentation: "fullScreenModal",
+              headerShown: true,
+              headerTitleAlign: "center",
+              title: "Cadidate Resumes",
+              headerLeft: () => (
+                <IconProfile
+                  customStyle={{ left: -20 }}
+                  iconName="arrow-left"
+                />
               ),
             }}
           />

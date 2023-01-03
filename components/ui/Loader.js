@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Colors } from "../../constants/colors";
 import Lottie from "lottie-react-native";
 
 export default function Loader() {
@@ -24,6 +23,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    zIndex: 1,
+    zIndex: 100,
   },
 });

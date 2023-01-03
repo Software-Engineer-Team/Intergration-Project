@@ -22,6 +22,10 @@ export default function IconProfile({ customStyle, iconName, type }) {
             navigate("Jobs");
             break;
           }
+          case "Employer": {
+            dispatch(setShowProfile({ showProfile: true }));
+            break;
+          }
           default: {
             navigate("Home");
             break;

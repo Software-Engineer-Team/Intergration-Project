@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import SocialLogin from "../components/login/SocialLogin";
 import Button from "../components/ui/Button";
 import ImageBg from "../components/ui/ImageBg";
@@ -50,16 +50,16 @@ const LoginScreen = () => {
             })
           );
           setisFetching(false);
-          /* return navigate("Employer"); */
-          return navigate("Candidate Detail", {
-            name: "Name  Test",
-            email: "Email Test",
-            address: "Address Test",
-            description: "Something",
-            skills: "React Native",
-            experience: "3 years",
-            education: "BK",
-          });
+          return navigate("Employer");
+          /* return navigate("Candidate Detail", { */
+          /*   name: "Name  Test", */
+          /*   email: "Email Test", */
+          /*   address: "Address Test", */
+          /*   description: "Something", */
+          /*   skills: "React Native", */
+          /*   experience: "3 years", */
+          /*   education: "BK", */
+          /* }); */
         } else {
           const { job_seeker, token } = resMember;
           dispatch(

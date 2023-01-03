@@ -3,16 +3,15 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { Colors } from "../../constants/colors";
 import {
-  selectJobState,
   setAddress,
   setDescription,
   setEmail,
   setExperience,
   setMaxSalary,
   setMinSalary,
+  setPosition,
   setRequirements,
   setTitle,
-  setType,
 } from "../../features/job";
 
 export default function PostJobInput({
@@ -32,8 +31,8 @@ export default function PostJobInput({
       case "JOB-LOCATION":
         dispatch(setAddress({ address: text }));
         break;
-      case "JOB-TYPE":
-        dispatch(setType({ type: text }));
+      case "JOB-POSITION":
+        dispatch(setPosition({ position: text }));
         break;
       case "JOB-CATEGORY":
         dispatch(setRequirements({ category: text }));

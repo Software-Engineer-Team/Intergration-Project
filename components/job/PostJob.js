@@ -1,13 +1,32 @@
-import React from "react";
-import { ScrollView, StyleSheet, Text } from "react-native";
+import React, { useState } from "react";
+import { ScrollView, StyleSheet } from "react-native";
+import { useSelector } from "react-redux";
 import { Colors } from "../../constants/colors";
+import { selectJob } from "../../features/job";
+import { postDataWithToken } from "../../utils/fetch-utils";
 import JobTitle from "../home/JobTitle";
 import Button from "../ui/Button";
 import Card from "../ui/Card";
-import FirmDetail from "./FirmDetail";
 import PostJobDetail from "./PostJobDetail";
+import { REACT_APP_ENDPOINT_SERVER } from "@env";
+import { selectUser } from "../../features/user";
+import Loader from "../ui/Loader";
 
 export default function PostJob() {
+  const job = useSelector(selectJob);
+  const user = useSelector(selectUser);
+  const [isFetch, setIsFetch] = useState(false);
+  const postJobHandler = () => {
+    setIsFetch(true);
+    postDataWithToken(
+      { ...job, company_id: user?.id },
+      REACT_APP_ENDPOINT_SERVER + "/companies/" + user?.id + "/jobs",
+      user?.token
+    ).then(() => {
+      setIsFetch(false);
+    });
+  };
+
   return (
     <Card>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -17,63 +36,21 @@ export default function PostJob() {
           styleContainer={{ flex: 0 }}
         />
         <PostJobDetail />
-        <JobTitle
-          textMuted="COMPANY"
-          text="DETAILS"
-          styleContainer={{ flex: 0 }}
-        />
-        <FirmDetail style={{ marginBottom: 20 }} />
+        {/* <JobTitle */}
+        {/*   textMuted="COMPANY" */}
+        {/*   text="DETAILS" */}
+        {/*   styleContainer={{ flex: 0 }} */}
+        {/* /> */}
+        {/* <FirmDetail style={{ marginBottom: 20 }} /> */}
         <Button
           title={"Submit a Job"}
           color={Colors.buttonColor}
-          onPress={() => {}}
+          onPress={postJobHandler}
           buttonStyle={{ borderRadius: 0 }}
           textStyle={{ fontSize: 15 }}
         />
       </ScrollView>
+      {isFetch && <Loader />}
     </Card>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "90%",
-    marginHorizontal: 10,
-    marginVertical: 5,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
-    shadowOpacity: 0.44,
-    shadowRadius: 10.32,
-    elevation: 16,
-    left: 10,
-    borderRadius: 5,
-    backgroundColor: "white",
-    padding: 10,
-  },
-  locationContainer: {
-    flexDirection: "row",
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.textMuted,
-    marginTop: 2,
-  },
-  company: {
-    marginLeft: 15,
-    marginBottom: 10,
-  },
-  text: {
-    lineHeight: 18,
-    fontSize: 16,
-    fontWeight: "bold",
-    /* marginBottom: 4, */
-  },
-  languagesContainer: {
-    padding: 10,
-    marginTop: 2,
-    flex: 1,
-    flexDirection: "row",
-  },
-});

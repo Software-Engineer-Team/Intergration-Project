@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   title: "",
   address: "",
-  type: "",
+  position: "",
   requirements: "",
   experience: 0,
   min_salary: 0,
@@ -20,7 +20,7 @@ export const jobSlice = createSlice({
     setJobState(state, action) {
       state.title = action.payload.title;
       state.address = action.payload.address;
-      state.type = action.payload.type;
+      state.position = action.payload.position;
       state.requirements = action.payload.category;
       state.experience = action.payload.experience;
       state.min_salary = action.payload.min_salary;
@@ -40,8 +40,8 @@ export const jobSlice = createSlice({
     setAddress(state, action) {
       state.address = action.payload.address;
     },
-    setType(state, action) {
-      state.type = action.payload.type;
+    setPosition(state, action) {
+      state.position = action.payload.position;
     },
     setRequirements(state, action) {
       state.requirements = action.payload.category;
@@ -63,7 +63,7 @@ export const {
   setJobState,
   setEmail,
   setRequirements,
-  setType,
+  setPosition,
   setExperience,
   setMinSalary,
   setMaxSalary,
@@ -72,6 +72,6 @@ export const {
   setDescription,
 } = jobSlice.actions;
 
-export const selectJobState = (state) => state.job;
+export const selectJob = (state) => state.job;
 
 export default jobSlice.reducer;

@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
   rootFooter: {
     flexDirection: "row",
     flex: 1,
+    maxHeight: 80,
     padding: 10,
     paddingHorizontal: 20,
     width: "100%",

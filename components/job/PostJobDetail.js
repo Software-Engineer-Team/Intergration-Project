@@ -16,7 +16,11 @@ export default function PostJobDetail() {
         title="Job Location"
         placeholder="Location"
       />
-      <PostJobInput type="JOB-TYPE" title="Job Type" placeholder="Full Time" />
+      <PostJobInput
+        type="JOB-POSITION"
+        title="Job Position"
+        placeholder="Junior"
+      />
       <PostJobInput
         type="JOB-CATEGORY"
         title="Job Category"
