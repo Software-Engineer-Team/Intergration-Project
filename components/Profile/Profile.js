@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import {
   Dimensions,
@@ -10,13 +11,18 @@ import {
 
 import Modal from "react-native-modal";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+import { useDispatch, useSelector } from "react-redux";
 import { Colors } from "../../constants/colors";
 import { Sizes } from "../../constants/sizes";
+import { logout, selectRole } from "../../features/user";
 import Icon from "../ui/Icon";
 import Line from "../ui/Line";
 import ProfileIcon from "./ProfileIcon";
 
 export default function Profile({ showProfile, toggleShowProfile }) {
+  const roleUser = useSelector(selectRole);
+  const dispatch = useDispatch();
+  const { navigate } = useNavigation();
   const profileCategories = {
     home: [
       {
@@ -52,7 +58,10 @@ export default function Profile({ showProfile, toggleShowProfile }) {
         title: "Contact",
       },
     ],
-    employerHome: [
+  };
+
+  if (roleUser === "EMPLOYER") {
+    profileCategories.employerHome = [
       {
         iconName: "home",
         title: "Emplyer Home",
@@ -69,8 +78,13 @@ export default function Profile({ showProfile, toggleShowProfile }) {
         iconName: "envelope",
         title: "Contact Us",
       },
-    ],
-    jobSeekerHome: [
+      {
+        iconName: "sign-out-alt",
+        title: "Sign Out",
+      },
+    ];
+  } else {
+    profileCategories.jobSeekerHome = [
       {
         iconName: "home",
         title: "JobSeeker Home",
@@ -84,11 +98,24 @@ export default function Profile({ showProfile, toggleShowProfile }) {
         title: "Resume",
       },
       {
-        iconName: "bell",
-        title: "Alert",
+        iconName: "sign-out-alt",
+        title: "Sign Out",
       },
-    ],
+    ];
+  }
+
+  const iconHandler = (type) => {
+    switch (type) {
+      case "Sign Out":
+        dispatch(logout());
+        navigate("Login");
+        break;
+
+      default:
+        break;
+    }
   };
+
   return (
     <Modal
       isVisible={showProfile}
@@ -126,26 +153,45 @@ export default function Profile({ showProfile, toggleShowProfile }) {
             <View style={styles.scrollViewContainer}>
               {profileCategories.home.map(({ iconName, title }, idx) => {
                 return (
-                  <ProfileIcon title={title} iconName={iconName} key={idx} />
+                  <ProfileIcon
+                    title={title}
+                    iconName={iconName}
+                    key={idx}
+                    onPress={() => {}}
+                  />
                 );
               })}
             </View>
-            <Line />
+            {profileCategories.employerHome && <Line />}
             <View style={styles.scrollViewContainer}>
-              {profileCategories.employerHome.map(
+              {profileCategories.employerHome?.map(
                 ({ iconName, title }, idx) => {
                   return (
-                    <ProfileIcon title={title} iconName={iconName} key={idx} />
+                    <ProfileIcon
+                      title={title}
+                      iconName={iconName}
+                      key={idx}
+                      onPress={() => {
+                        iconHandler(title);
+                      }}
+                    />
                   );
                 }
               )}
             </View>
-            <Line />
+            {profileCategories.jobSeekerHome && <Line />}
             <View style={styles.scrollViewContainer}>
-              {profileCategories.jobSeekerHome.map(
+              {profileCategories.jobSeekerHome?.map(
                 ({ iconName, title }, idx) => {
                   return (
-                    <ProfileIcon title={title} iconName={iconName} key={idx} />
+                    <ProfileIcon
+                      title={title}
+                      iconName={iconName}
+                      key={idx}
+                      onPress={() => {
+                        iconHandler(title);
+                      }}
+                    />
                   );
                 }
               )}

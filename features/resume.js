@@ -5,6 +5,8 @@ const initialState = {
   experience: "",
   skills: "",
   description: "",
+  university: "",
+  qualifications: "",
 };
 
 export const resumeSlice = createSlice({
@@ -25,7 +27,7 @@ export const resumeSlice = createSlice({
       state.skills = action.payload.skills;
     },
     setResumeQualification(state, action) {
-      state.qualification = action.payload.qualification;
+      state.qualifications = action.payload.qualification;
     },
     setResumeUniversity(state, action) {
       state.university = action.payload.university;

@@ -7,8 +7,14 @@ import Member from "../components/employer/Member";
 import EmployerDetail from "../components/employer/EmployerDetail";
 import EmployerFooter from "../components/employer/EmployerFooter";
 import { useNavigation } from "@react-navigation/native";
+import Profile from "../components/Profile/Profile";
+import { selectShowProfile, setShowProfile } from "../features/profile";
+import { useDispatch, useSelector } from "react-redux";
+import { showAlert } from "../utils/alert-utils";
 export default function EmployerScreen() {
   const { navigate } = useNavigation();
+  const dispatch = useDispatch();
+  const showProfile = useSelector(selectShowProfile);
   const functionsEmployer = [
     {
       id: Math.random().toString(),
@@ -67,17 +73,24 @@ export default function EmployerScreen() {
   const navigationHandler = (type) => {
     switch (type) {
       case "Job Listing":
+        navigate("Posted Jobs");
         break;
       case "Candidate":
         navigate("Candidate Resumes");
         break;
-
       default:
+        showAlert("Not supported yet!", "Notify");
         break;
     }
   };
   return (
     <Card cardStyle={styles.container}>
+      <Profile
+        showProfile={showProfile}
+        toggleShowProfile={() => {
+          dispatch(setShowProfile({ showProfile: false }));
+        }}
+      />
       <EmployerDetail />
 
       <View style={styles.functionContainer}>

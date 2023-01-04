@@ -51,15 +51,6 @@ const LoginScreen = () => {
           );
           setisFetching(false);
           return navigate("Employer");
-          /* return navigate("Candidate Detail", { */
-          /*   name: "Name  Test", */
-          /*   email: "Email Test", */
-          /*   address: "Address Test", */
-          /*   description: "Something", */
-          /*   skills: "React Native", */
-          /*   experience: "3 years", */
-          /*   education: "BK", */
-          /* }); */
         } else {
           const { job_seeker, token } = resMember;
           dispatch(

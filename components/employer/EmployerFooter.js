@@ -10,14 +10,24 @@ export default function EmployerFooter() {
   const { navigate } = useNavigation();
   return (
     <View style={styles.rootFooter}>
-      <Icon customStyle={styles.itemFooter}>
+      <Icon
+        customStyle={styles.itemFooter}
+        onPress={() => {
+          navigate("Employer");
+        }}
+      >
         <IconFontAwesome5 name="home" size={23} color={IconColors.iconBrown} />
         <Text style={[styles.rootFooterText, { color: IconColors.iconBrown }]}>
           Home
         </Text>
       </Icon>
 
-      <Icon customStyle={styles.itemFooter} onPress={() => {}}>
+      <Icon
+        customStyle={styles.itemFooter}
+        onPress={() => {
+          navigate("Candidate Resumes");
+        }}
+      >
         <IconFontAwesome5
           name="users"
           size={23}
@@ -51,7 +61,12 @@ export default function EmployerFooter() {
         </Text>
       </TouchableOpacity>
 
-      <Icon customStyle={styles.itemFooter} onPress={() => {}}>
+      <Icon
+        customStyle={styles.itemFooter}
+        onPress={() => {
+          navigate("Posted Jobs");
+        }}
+      >
         <IconFontAwesome5
           name="globe"
           size={23}
@@ -63,16 +78,21 @@ export default function EmployerFooter() {
           Jobs
         </Text>
       </Icon>
-      <Icon customStyle={styles.itemFooter}>
+      <Icon
+        customStyle={styles.itemFooter}
+        onPress={() => {
+          navigate("PostJob");
+        }}
+      >
         <IconFontAwesome5
-          name="comments"
+          name="address-card"
           size={23}
           color={IconColors.iconBrownAlt}
         />
         <Text
           style={[styles.rootFooterText, { color: IconColors.iconBrownAlt }]}
         >
-          Message
+          Post Job
         </Text>
       </Icon>
     </View>

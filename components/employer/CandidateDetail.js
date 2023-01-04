@@ -1,13 +1,16 @@
 import { useRoute } from "@react-navigation/native";
-import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { Colors } from "../../constants/colors";
 import { Sizes } from "../../constants/sizes";
 import Button from "../ui/Button";
 import Line from "../ui/Line";
+import Toast from "react-native-toast-message";
+import Loader from "../ui/Loader";
+
 export default function CandidateDetail() {
+  const [isFetching, setIsFetching] = useState(false);
   const {
     params: {
       name,
@@ -22,11 +25,12 @@ export default function CandidateDetail() {
 
   return (
     <View style={styles.container}>
+      {isFetching && <Loader />}
       <View style={styles.titleContainer}>
         <Text style={styles.text}>{name ? name : "TEST"}</Text>
       </View>
       <View style={styles.titleContainer}>
-        <Text style={styles.dateText}>{email ? email : "EMAILTEST"}</Text>
+        <Text style={styles.dateText}>{email ? email : "EMAIL TEST"}</Text>
       </View>
       <Line lineStyle={{ marginVertical: 15 }} />
       <View style={styles.typeContainer}>
@@ -48,9 +52,7 @@ export default function CandidateDetail() {
             color={Colors.textMuted}
           />
           <View style={{ marginLeft: 20 }}>
-            <Text style={styles.iconText}>
-              {address ? address : "ADDRESSTEST"}
-            </Text>
+            <Text style={styles.iconText}>{address}</Text>
           </View>
         </View>
         <View style={styles.type}>
@@ -60,7 +62,7 @@ export default function CandidateDetail() {
             color={Colors.textMuted}
           />
           <View style={{ marginLeft: 20 }}>
-            <Text style={styles.iconText}>{experience}</Text>
+            <Text style={styles.iconText}>{experience || 3} years</Text>
           </View>
         </View>
       </View>
@@ -69,9 +71,7 @@ export default function CandidateDetail() {
         <Text style={styles.text}>Resume Description</Text>
       </View>
       <View style={styles.description}>
-        <Text style={[styles.text, styles.descriptionText]}>
-          {description ? description : "SOMETHING"}
-        </Text>
+        <Text style={[styles.text, styles.descriptionText]}>{description}</Text>
       </View>
       <Line lineStyle={{ marginVertical: 12 }} />
       <View style={styles.titleContainer}>
@@ -79,7 +79,9 @@ export default function CandidateDetail() {
       </View>
       <ScrollView style={styles.skillsContainer} horizontal>
         <View style={styles.skillsContent}>
-          <Text style={styles.skillsItem}>{skills ? skills : "SKILLTEST"}</Text>
+          <Text style={styles.skillsItem}>
+            {skills ? skills : "SKILL TEST"}
+          </Text>
         </View>
       </ScrollView>
       <Button
@@ -92,8 +94,23 @@ export default function CandidateDetail() {
           bottom: 0,
         }}
         textStyle={{ fontSize: 15, lineHeight: 15 }}
-        onPress={() => {}}
+        onPress={() => {
+          setIsFetching(true);
+          setTimeout(() => {
+            setIsFetching(false);
+            Toast.show({
+              type: "success",
+              text1: "Send Notification",
+              text2:
+                "You have sent an invitation to your candidate successfully 👋",
+              position: "top",
+              visibilityTime: 3000,
+              topOffset: -50,
+            });
+          }, 2000);
+        }}
       />
+      <Toast />
     </View>
   );
 }

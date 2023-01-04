@@ -358,9 +358,7 @@ const HomeScreen = () => {
                 numOfJobs={item.numOfJobs}
                 companyName={item.companyName}
                 key={item.id}
-                onPress={() => {
-                  navigate("Employer");
-                }}
+                onPress={() => {}}
               />
             ))}
           </ScrollView>

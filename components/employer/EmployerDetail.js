@@ -38,7 +38,7 @@ export default function EmployerDetail() {
               color={Colors.color1}
             />
             <View style={{ marginLeft: 20 }}>
-              <Text style={styles.iconText}>wipro.com</Text>
+              <Text style={styles.iconText}>exp.com</Text>
             </View>
           </View>
 

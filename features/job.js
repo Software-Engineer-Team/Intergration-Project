@@ -17,6 +17,9 @@ export const jobSlice = createSlice({
   initialState,
   // Actions that allow us to modify the global store
   reducers: {
+    clearJobState(state) {
+      state = initialState;
+    },
     setJobState(state, action) {
       state.title = action.payload.title;
       state.address = action.payload.address;
@@ -70,6 +73,7 @@ export const {
   setAddress,
   setTitle,
   setDescription,
+  clearJobState,
 } = jobSlice.actions;
 
 export const selectJob = (state) => state.job;

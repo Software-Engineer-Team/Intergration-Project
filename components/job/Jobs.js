@@ -1,15 +1,18 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
-import { Colors } from "../../constants/colors";
+import { REACT_APP_ENDPOINT_SERVER } from "@env";
 import Card from "../ui/Card";
 import Job from "./Job";
+import Loader from "../ui/Loader";
 export default function Jobs() {
   const { navigate } = useNavigation();
   const [jobs, setJobs] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
-    fetch("https://laravel-api.herokuapp.com/api/jobs/")
+    setIsFetching(true);
+    fetch(`${REACT_APP_ENDPOINT_SERVER}/jobs/`)
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);
@@ -24,94 +27,68 @@ export default function Jobs() {
         /*     }; */
         /*   } */
         /* ); */
+      })
+      .finally(() => {
+        setIsFetching(false);
       });
   }, []);
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <Card cardStyle={{ marginVertical: 10 }}>
-        {jobs.map(
-          ({
-            id,
-            title,
-            address,
-            description,
-            requirements,
-            experience,
-            updated_at,
-            min_salary,
-            max_salary,
-            company_id,
-          }) => {
-            return (
-              <Job
-                key={id}
-                title={title}
-                address={address || "Unknown"}
-                description={description || "Unknown"}
-                requirements={requirements || "Unknown"}
-                experience={experience || "1-2"}
-                onPress={() => {
-                  navigate("JobDetail", {
-                    company_id,
-                    title,
-                    address,
-                    description,
-                    requirements,
-                    experience,
-                    updated_at,
-                    min_salary,
-                    max_salary,
-                  });
-                }}
-              />
-            );
-          }
-        )}
-      </Card>
-    </ScrollView>
+    <Card cardStyle={styles.container}>
+      {isFetching ? (
+        <Loader />
+      ) : (
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {jobs.map(
+            ({
+              id,
+              title,
+              address,
+              description,
+              requirements,
+              experience,
+              updated_at,
+              min_salary,
+              max_salary,
+              company_id,
+            }) => {
+              return (
+                <Job
+                  key={id}
+                  title={title}
+                  address={address || "Unknown"}
+                  description={description || "Unknown"}
+                  requirements={requirements || "Unknown"}
+                  experience={experience || "1-2"}
+                  onPress={() => {
+                    navigate("JobDetail", {
+                      company_id,
+                      title,
+                      address,
+                      description,
+                      requirements,
+                      experience,
+                      updated_at,
+                      min_salary,
+                      max_salary,
+                    });
+                  }}
+                />
+              );
+            }
+          )}
+        </ScrollView>
+      )}
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "90%",
-    marginHorizontal: 10,
-    marginVertical: 5,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
-    shadowOpacity: 0.44,
-    shadowRadius: 10.32,
-    elevation: 16,
-    left: 10,
-    borderRadius: 5,
-    backgroundColor: "white",
-    padding: 10,
-  },
-  locationContainer: {
-    flexDirection: "row",
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.textMuted,
-    marginTop: 2,
-  },
-  company: {
-    marginLeft: 15,
-    marginBottom: 10,
-  },
-  text: {
-    lineHeight: 18,
-    fontSize: 16,
-    fontWeight: "bold",
-    /* marginBottom: 4, */
-  },
-  languagesContainer: {
-    padding: 10,
-    marginTop: 2,
-    flex: 1,
-    flexDirection: "row",
+    width: "100%",
+    maxHeight: 900,
+    paddingTop: 10,
+    marginVertical: 10,
   },
 });

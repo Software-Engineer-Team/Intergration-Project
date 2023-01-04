@@ -39,8 +39,6 @@ const RegisterScreen = () => {
       if (isEmployer) {
         url = REACT_APP_ENDPOINT_SERVER + "/auth/companies/register";
       }
-      console.log({ name, email, password });
-      console.log(url);
 
       try {
         setisFetching(true);

@@ -20,11 +20,14 @@ export const userSlice = createSlice({
       state.role = action.payload.role;
       state.id = action.payload.id;
     },
+    logout(state) {
+      state = initialState;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setUser } = userSlice.actions;
+export const { setUser, logout } = userSlice.actions;
 
 export const selectRole = (state) => state.user.role;
 export const selectUser = (state) => state.user;

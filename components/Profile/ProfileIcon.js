@@ -3,11 +3,12 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { Colors } from "../../constants/colors";
 import { Sizes } from "../../constants/sizes";
-export default function ProfileIcon({ title, iconName }) {
+export default function ProfileIcon({ title, iconName, onPress }) {
   return (
     <Pressable
       style={[styles.container]}
       android_ripple={{ color: Colors.rippleColor }}
+      onPress={onPress}
     >
       <View style={styles.iconContainer}>
         <FontAwesome5

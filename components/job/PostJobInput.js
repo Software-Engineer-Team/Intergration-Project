@@ -1,8 +1,15 @@
-import React from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  unstable_enableLogBox,
+  View,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { Colors } from "../../constants/colors";
 import {
+  selectJob,
   setAddress,
   setDescription,
   setEmail,
@@ -20,8 +27,16 @@ export default function PostJobInput({
   placeholder,
   textAreaStyle,
   textArea,
+  isClear,
 }) {
   const dispatch = useDispatch();
+  const job = useSelector(selectJob);
+  useEffect(() => {
+    if (isClear) {
+      setValue("");
+    }
+  }, [isClear]);
+  const [value, setValue] = useState("");
 
   const textChangeHandler = (text) => {
     switch (type) {
@@ -55,7 +70,33 @@ export default function PostJobInput({
       default:
         break;
     }
+    setValue(text);
   };
+
+  /* const chooseTextHandler = () => { */
+  /*   switch (type) { */
+  /*     case "JOB-TITLE": */
+  /*       return job.title; */
+  /*     case "JOB-LOCATION": */
+  /*       return job.address; */
+  /*     case "JOB-POSITION": */
+  /*       return job.position; */
+  /*     case "JOB-CATEGORY": */
+  /*       return job.requirements; */
+  /*     case "JOB-EXPERIENCE": */
+  /*       return toString(job.experience); */
+  /*     case "JOB-MIN_SALARY": */
+  /*       return toString(job.min_salary); */
+  /*     case "JOB-MAX_SALARY": */
+  /*       return toString(job.max_salary); */
+  /*     case "JOB-CONTACT": */
+  /*       return job.email; */
+  /*     case "JOB-DESCRIPTION": */
+  /*       return job.description; */
+  /*     default: */
+  /*       break; */
+  /*   } */
+  /* }; */
 
   return (
     <View>
@@ -66,6 +107,7 @@ export default function PostJobInput({
       </View>
       <View style={styles.inputContainer}>
         <TextInput
+          value={value}
           placeholder={placeholder}
           onChangeText={textChangeHandler}
           style={[styles.textInput, textAreaStyle]}

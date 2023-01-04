@@ -19,7 +19,8 @@ export default function IconProfile({ customStyle, iconName, type }) {
             break;
           }
           case "JobDetail":
-          case "ApplyJob": {
+          case "ApplyJob":
+          case "Jobs": {
             navigation.goBack();
             break;
           }
@@ -27,8 +28,18 @@ export default function IconProfile({ customStyle, iconName, type }) {
             dispatch(setShowProfile({ showProfile: true }));
             break;
           }
+          case "Candidate Resumes":
+          case "Posted Jobs":
+          case "PostJob": {
+            navigation.navigate("Employer");
+            break;
+          }
+          case "Candidate Detail": {
+            navigation.navigate("Candidate Resumes");
+            break;
+          }
           default: {
-            navigation.navigate("Home");
+            /* navigation.navigate("Home"); */
             break;
           }
         }

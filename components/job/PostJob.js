@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView } from "react-native";
 import { useSelector } from "react-redux";
 import { Colors } from "../../constants/colors";
 import { selectJob } from "../../features/job";
@@ -11,6 +11,7 @@ import PostJobDetail from "./PostJobDetail";
 import { REACT_APP_ENDPOINT_SERVER } from "@env";
 import { selectUser } from "../../features/user";
 import Loader from "../ui/Loader";
+import Toast from "react-native-toast-message";
 
 export default function PostJob() {
   const job = useSelector(selectJob);
@@ -22,9 +23,20 @@ export default function PostJob() {
       { ...job, company_id: user?.id },
       REACT_APP_ENDPOINT_SERVER + "/companies/" + user?.id + "/jobs",
       user?.token
-    ).then(() => {
-      setIsFetch(false);
-    });
+    )
+      .then(() => {
+        Toast.show({
+          type: "success",
+          text1: "Post a job",
+          text2: "You have submit a job successfully 👋",
+          position: "top",
+          visibilityTime: 3000,
+          topOffset: 10,
+        });
+      })
+      .finally(() => {
+        setIsFetch(false);
+      });
   };
 
   return (
@@ -35,7 +47,7 @@ export default function PostJob() {
           text="DETAILS"
           styleContainer={{ flex: 0 }}
         />
-        <PostJobDetail />
+        <PostJobDetail isClear={isFetch} />
         {/* <JobTitle */}
         {/*   textMuted="COMPANY" */}
         {/*   text="DETAILS" */}
@@ -51,6 +63,7 @@ export default function PostJob() {
         />
       </ScrollView>
       {isFetch && <Loader />}
+      <Toast />
     </Card>
   );
 }
