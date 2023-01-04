@@ -20,10 +20,9 @@ export default function JobDetail() {
       min_salary,
       max_salary,
       company_id,
+      job_id,
     },
   } = useRoute();
-
-  console.log(company_id);
 
   return (
     <ScrollView style={styles.container}>
@@ -111,7 +110,7 @@ export default function JobDetail() {
           textStyle={{ fontSize: 15, lineHeight: 15 }}
           onPress={() => {
             navigation.navigate("Apply Job", {
-              company_id,
+              job_id,
             });
           }}
         />

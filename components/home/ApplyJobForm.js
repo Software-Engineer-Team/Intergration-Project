@@ -4,35 +4,40 @@ import { Colors } from "../../constants/colors";
 import Button from "../ui/Button";
 import ApplyJobInput from "./ApplyJobInput";
 
-export default function ApplyJobForm({ applyJobHandler }) {
+export default function ApplyJobForm({ applyJobHandler, isClear }) {
   return (
     <View style={styles.container}>
       <ApplyJobInput
         type="POSITION"
         title="Position"
         placeholder="Project Manager"
+        isClear={isClear}
       />
       <ApplyJobInput
         type="QUALIFICATION"
         title="Qualification"
         placeholder="Graduation or PostGraduation"
+        isClear={isClear}
       />
 
       <ApplyJobInput
         type="UNIVERSITY"
         title="University"
         placeholder="Back Khoa..."
+        isClear={isClear}
       />
 
       <ApplyJobInput
         type="EXPERIENCE"
         title="Current Experience"
         placeholder="2 years"
+        isClear={isClear}
       />
       <ApplyJobInput
         type="SKILLS"
         title="Skills"
         placeholder="Php Developer, Web Designer..."
+        isClear={isClear}
       />
       <ApplyJobInput
         type="DESCRIPTION"
@@ -40,6 +45,7 @@ export default function ApplyJobForm({ applyJobHandler }) {
         placeholder="example@gmail.com"
         textArea={true}
         textAreaStyle={styles.textArea}
+        isClear={isClear}
       />
       <Button
         title={"Submit a Job"}
@@ -47,6 +53,7 @@ export default function ApplyJobForm({ applyJobHandler }) {
         buttonStyle={{ borderRadius: 0 }}
         textStyle={{ fontSize: 15 }}
         onPress={applyJobHandler}
+        isClear={isClear}
       />
     </View>
   );

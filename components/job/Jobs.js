@@ -62,6 +62,7 @@ export default function Jobs() {
                   experience={experience || "1-2"}
                   onPress={() => {
                     navigate("JobDetail", {
+                      job_id: id,
                       company_id,
                       title,
                       address,

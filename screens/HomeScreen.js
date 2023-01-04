@@ -44,7 +44,7 @@ const HomeScreen = () => {
       iconColor: IconColors.iconGreen,
       iconSize: 100,
       backgroundBox: { backgroundColor: "#f9fcf5" },
-      categoryName: "IT",
+      categoryName: "Data Analysis",
       numOfJobs: "31072-jobs",
     },
     {
@@ -53,7 +53,7 @@ const HomeScreen = () => {
       iconColor: IconColors.iconYellow,
       iconSize: 100,
       backgroundBox: { backgroundColor: "#fffcf7" },
-      categoryName: "IT",
+      categoryName: "Full Stack",
       numOfJobs: "31072-jobs",
     },
     {
@@ -62,7 +62,7 @@ const HomeScreen = () => {
       iconColor: IconColors.iconOrange,
       iconSize: 100,
       backgroundBox: { backgroundColor: "#fffaf6" },
-      categoryName: "IT",
+      categoryName: "BackEnd Developer",
       numOfJobs: "31072-jobs",
     },
     {
@@ -71,7 +71,7 @@ const HomeScreen = () => {
       iconColor: IconColors.iconBlueAlt,
       iconSize: 100,
       backgroundBox: { backgroundColor: "#fbfaff" },
-      categoryName: "IT",
+      categoryName: "FrontEnd Developer",
       numOfJobs: "31072-jobs",
     },
     {
@@ -80,7 +80,7 @@ const HomeScreen = () => {
       iconColor: IconColors.iconPink,
       iconSize: 100,
       backgroundBox: { backgroundColor: "#fdf7f9" },
-      categoryName: "IT",
+      categoryName: "Blockchain",
       numOfJobs: "31072-jobs",
     },
   ];

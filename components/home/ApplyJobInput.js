@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { Colors } from "../../constants/colors";
@@ -17,8 +17,16 @@ export default function ApplyJobInput({
   placeholder,
   textAreaStyle,
   textArea,
+  isClear,
 }) {
   const dispatch = useDispatch();
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    if (isClear) {
+      setValue("");
+    }
+  }, [isClear]);
 
   const textChangeHandler = (text) => {
     switch (type) {
@@ -43,6 +51,7 @@ export default function ApplyJobInput({
       default:
         break;
     }
+    setValue(text);
   };
 
   return (
@@ -54,6 +63,7 @@ export default function ApplyJobInput({
       </View>
       <View style={styles.inputContainer}>
         <TextInput
+          value={value}
           placeholder={placeholder}
           onChangeText={textChangeHandler}
           style={[styles.textInput, textAreaStyle]}

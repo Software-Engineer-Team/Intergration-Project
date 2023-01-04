@@ -13,7 +13,7 @@ import { REACT_APP_ENDPOINT_SERVER } from "@env";
 import Toast from "react-native-toast-message";
 
 export default function ApplyJob() {
-  const [isFetch, setIsFetch] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
   const user = useSelector(selectUser);
   const {
     skills,
@@ -25,15 +25,15 @@ export default function ApplyJob() {
   } = useSelector(selectResume);
 
   const {
-    params: { company_id },
+    params: { job_id },
   } = useRoute();
 
   const applyJobHandler = () => {
-    setIsFetch(true);
+    setIsFetching(true);
     postDataWithToken(
       {
-        company_id,
         jobseeker_id: user?.id,
+        job_id,
         qualifications,
         educations: university,
         experiences: experience,
@@ -54,8 +54,11 @@ export default function ApplyJob() {
           topOffset: 10,
         });
       })
+      .catch((err) => {
+        console.log(err);
+      })
       .finally(() => {
-        setIsFetch(false);
+        setIsFetching(false);
       });
   };
 
@@ -67,9 +70,10 @@ export default function ApplyJob() {
           text="DETAILS"
           styleContainer={{ flex: 0 }}
         />
-        <ApplyJobForm applyJobHandler={applyJobHandler} />
+        <ApplyJobForm applyJobHandler={applyJobHandler} isClear={isFetching} />
       </ScrollView>
-      {isFetch && <Loader />}
+      {isFetching && <Loader />}
+      <Toast />
     </Card>
   );
 }

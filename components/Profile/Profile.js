@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Colors } from "../../constants/colors";
 import { Sizes } from "../../constants/sizes";
 import { logout, selectRole } from "../../features/user";
+import { setShowProfile } from "../../features/profile";
 import Icon from "../ui/Icon";
 import Line from "../ui/Line";
 import ProfileIcon from "./ProfileIcon";
@@ -108,9 +109,9 @@ export default function Profile({ showProfile, toggleShowProfile }) {
     switch (type) {
       case "Sign Out":
         dispatch(logout());
+        dispatch(setShowProfile({ showProfile: false }));
         navigate("Login");
         break;
-
       default:
         break;
     }
