@@ -62,7 +62,7 @@ export default function CandidateDetail() {
             color={Colors.textMuted}
           />
           <View style={{ marginLeft: 20 }}>
-            <Text style={styles.iconText}>{experience || 3} years</Text>
+            <Text style={styles.iconText}>{experience || "3 years"}</Text>
           </View>
         </View>
       </View>

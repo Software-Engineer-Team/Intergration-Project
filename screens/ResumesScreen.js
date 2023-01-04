@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import Card from "../components/ui/Card";
 import EmployerFooter from "../components/employer/EmployerFooter";
@@ -7,48 +7,51 @@ import { useNavigation } from "@react-navigation/native";
 import { REACT_APP_ENDPOINT_SERVER } from "@env";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/user";
+import { fetchDataWithToken } from "../utils/fetch-utils";
+import Loader from "../components/ui/Loader";
 
 export default function ResumesScreen() {
   const { navigate } = useNavigation();
   const user = useSelector(selectUser);
+  const [isFetching, setIsFetching] = useState(false);
+  const [resumes, setResumes] = useState([]);
 
   useEffect(() => {
     if (user?.id) {
       // need to change
-      fetch(`${REACT_APP_ENDPOINT_SERVER}/jobs/${user.id}/applications`)
-        .then((res) => res.json())
-        .then(() => {});
+      setIsFetching(true);
+      fetchDataWithToken(
+        `${REACT_APP_ENDPOINT_SERVER}/companies/${user.id}/applications`,
+        user.token
+      )
+        .then((res) => {
+          res.jobs.forEach((job) => {
+            const applications = job.applications.map((application) => {
+              return {
+                qualification: application.qualifications,
+                university: application.educations,
+                experience: application.experiences,
+                name: application.jobseeker.name,
+                email: application.jobseeker.email,
+                skills: application.skills,
+                id: Math.random().toString(),
+                imgUrl: require("../assets/images/user-img.jpg"),
+              };
+            });
+            setResumes((preResumes) => {
+              preResumes.push(...applications);
+              return preResumes;
+            });
+          });
+        })
+        .finally(() => {
+          setIsFetching(false);
+        });
     }
-  }, [user]);
-  const resumes = [
-    {
-      id: Math.random().toString(),
-      name: "Aara Sittoria",
-      skills: "Web Designer",
-      imgUrl: require("../assets/images/member-4.png"),
-    },
-    {
-      id: Math.random().toString(),
-      name: "John",
-      skill: "Front End",
-      imgUrl: require("../assets/images/member-3.png"),
-    },
-    {
-      id: Math.random().toString(),
-      name: "John Dow",
-      skills: "SEO Expert",
-      imgUrl: require("../assets/images/member-2.png"),
-    },
-    {
-      id: Math.random().toString(),
-      name: "Cindrella",
-      skills: "PHP Developer",
-      imgUrl: require("../assets/images/member-1.png"),
-    },
-  ];
-
+  }, [user, resumes]);
   return (
     <Card cardStyle={styles.container}>
+      {isFetching && <Loader />}
       <ScrollView showsVerticalScrollIndicator={false}>
         {resumes?.map(
           ({
@@ -69,7 +72,7 @@ export default function ResumesScreen() {
                   email,
                   address: "Address Test",
                   description: "None",
-                  skills: "React Native",
+                  skills,
                   experience,
                   education: university || "None",
                 });
@@ -84,7 +87,7 @@ export default function ResumesScreen() {
           )
         )}
       </ScrollView>
-      <EmployerFooter />
+      {/* <EmployerFooter /> */}
     </Card>
   );
 }
