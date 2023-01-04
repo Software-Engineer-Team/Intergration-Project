@@ -1,4 +1,4 @@
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import moment from "moment";
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
@@ -7,7 +7,8 @@ import { Colors } from "../../constants/colors";
 import { Sizes } from "../../constants/sizes";
 import Button from "../ui/Button";
 import Line from "../ui/Line";
-export default function JobDetail({ onPress }) {
+export default function JobDetail() {
+  const navigation = useNavigation();
   const {
     params: {
       title,
@@ -18,9 +19,11 @@ export default function JobDetail({ onPress }) {
       updated_at,
       min_salary,
       max_salary,
+      company_id,
     },
   } = useRoute();
-  console.log(title);
+
+  console.log(company_id);
 
   return (
     <ScrollView style={styles.container}>
@@ -106,7 +109,11 @@ export default function JobDetail({ onPress }) {
             bottom: 0,
           }}
           textStyle={{ fontSize: 15, lineHeight: 15 }}
-          onPress={onPress}
+          onPress={() => {
+            navigation.navigate("Apply Job", {
+              company_id,
+            });
+          }}
         />
       </View>
     </ScrollView>

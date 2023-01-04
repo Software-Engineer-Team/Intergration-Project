@@ -47,19 +47,14 @@ export default function Footer() {
           Profile
         </Text>
       </TouchableOpacity>
-      <Icon
-        customStyle={styles.itemFooter}
-        onPress={() => {
-          navigate("PostJob");
-        }}
-      >
+      <Icon customStyle={styles.itemFooter} onPress={() => {}}>
         <IconFontAwesome5
           name="address-card"
           size={23}
           color={IconColors.iconOrange}
         />
         <Text style={[styles.rootFooterText, { color: IconColors.iconOrange }]}>
-          Post Job
+          Profile
         </Text>
       </Icon>
       <Icon customStyle={styles.itemFooter}>

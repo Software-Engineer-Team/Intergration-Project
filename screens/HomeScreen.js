@@ -9,7 +9,6 @@ import {
   View,
 } from "react-native";
 import IconMaterialIcons from "react-native-vector-icons/MaterialIcons";
-import ApplyJob from "../components/home/ApplyJob";
 import Category from "../components/home/Category";
 import Footer from "../components/home/Footer";
 import JobTitle from "../components/home/JobTitle";
@@ -20,11 +19,12 @@ import Card from "../components/ui/Card";
 import { Colors, IconColors } from "../constants/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { selectShowProfile, setShowProfile } from "../features/profile";
+import FeaturedJobs from "../components/home/FeaturedJobs";
 
 const HomeScreen = () => {
   const showProfile = useSelector(selectShowProfile);
   const { navigate } = useNavigation();
-  const [featuredJobs, setFeaturedJobs] = useState([]);
+  /* const [featuredJobs, setFeaturedJobs] = useState([]); */
   const [latestJobs, setLatestJobs] = useState([]);
   const [topJobs, setTopJobs] = useState([]);
   const dispatch = useDispatch();
@@ -89,18 +89,18 @@ const HomeScreen = () => {
     fetch("https://laravel-api.herokuapp.com/api/jobs/")
       .then((res) => res.json())
       .then((jobs) => {
-        const featuredJobsData = jobs.map(({ id, title }) => {
-          return {
-            id,
-            backgroundBox: { backgroundColor: "#627aee" },
-            backgroundContainer: { backgroundColor: IconColors.iconBlue },
-            textDescription1: title || "IT Department Manager",
-            textDescription2: "Infosys Ltd",
-            textDescription3: "Delhi",
-          };
-        });
-
-        setFeaturedJobs(featuredJobsData);
+        /* const featuredJobsData = jobs.map(({ id, title }) => { */
+        /*   return { */
+        /*     id, */
+        /*     backgroundBox: { backgroundColor: "#627aee" }, */
+        /*     backgroundContainer: { backgroundColor: IconColors.iconBlue }, */
+        /*     textDescription1: title || "IT Department Manager", */
+        /*     textDescription2: "Infosys Ltd", */
+        /*     textDescription3: "Delhi", */
+        /*   }; */
+        /* }); */
+        /**/
+        /* setFeaturedJobs(featuredJobsData); */
 
         const latestJobsData = jobs.map(
           ({ id, title, address, requirements }) => {
@@ -127,48 +127,48 @@ const HomeScreen = () => {
       });
   }, []);
 
-  /* const featuredJobs = [ */
-  /* { */
-  /*   id: Math.random().toString(), */
-  /*   backgroundBox: { backgroundColor: "#627aee" }, */
-  /*   backgroundContainer: { backgroundColor: IconColors.iconBlue }, */
-  /*   textDescription1: "IT Department Manager", */
-  /*   textDescription2: "Infosys Ltd", */
-  /*   textDescription3: "Delhi", */
-  /* }, */
-  /*   { */
-  /*     id: Math.random().toString(), */
-  /*     backgroundBox: { backgroundColor: "#91c352" }, */
-  /*     backgroundContainer: { backgroundColor: IconColors.iconGreen }, */
-  /*     textDescription1: "IT Department Manager", */
-  /*     textDescription2: "Infosys Ltd", */
-  /*     textDescription3: "Delhi", */
-  /*   }, */
-  /*   { */
-  /*     id: Math.random().toString(), */
-  /*     backgroundBox: { backgroundColor: "#fcc575" }, */
-  /*     backgroundContainer: { backgroundColor: IconColors.iconYellow }, */
-  /*     textDescription1: "IT Department Manager", */
-  /*     textDescription2: "Infosys Ltd", */
-  /*     textDescription3: "Delhi", */
-  /*   }, */
-  /*   { */
-  /*     id: Math.random().toString(), */
-  /*     backgroundBox: { backgroundColor: "#f7924e" }, */
-  /*     backgroundContainer: { backgroundColor: IconColors.iconOrange }, */
-  /*     textDescription1: "IT Department Manager", */
-  /*     textDescription2: "Infosys Ltd", */
-  /*     textDescription3: "Delhi", */
-  /*   }, */
-  /*   { */
-  /*     id: Math.random().toString(), */
-  /*     backgroundBox: { backgroundColor: "#9b92fb" }, */
-  /*     backgroundContainer: { backgroundColor: IconColors.iconBlueAlt }, */
-  /*     textDescription1: "IT Department Manager", */
-  /*     textDescription2: "Infosys Ltd", */
-  /*     textDescription3: "Delhi", */
-  /*   }, */
-  /* ]; */
+  const featuredJobs = [
+    {
+      id: Math.random().toString(),
+      backgroundBox: { backgroundColor: "#627aee" },
+      backgroundContainer: { backgroundColor: IconColors.iconBlue },
+      textDescription1: "IT Department Manager",
+      textDescription2: "Infosys Ltd",
+      textDescription3: "Delhi",
+    },
+    {
+      id: Math.random().toString(),
+      backgroundBox: { backgroundColor: "#91c352" },
+      backgroundContainer: { backgroundColor: IconColors.iconGreen },
+      textDescription1: "IT Department Manager",
+      textDescription2: "Infosys Ltd",
+      textDescription3: "Delhi",
+    },
+    {
+      id: Math.random().toString(),
+      backgroundBox: { backgroundColor: "#fcc575" },
+      backgroundContainer: { backgroundColor: IconColors.iconYellow },
+      textDescription1: "IT Department Manager",
+      textDescription2: "Infosys Ltd",
+      textDescription3: "Delhi",
+    },
+    {
+      id: Math.random().toString(),
+      backgroundBox: { backgroundColor: "#f7924e" },
+      backgroundContainer: { backgroundColor: IconColors.iconOrange },
+      textDescription1: "IT Department Manager",
+      textDescription2: "Infosys Ltd",
+      textDescription3: "Delhi",
+    },
+    {
+      id: Math.random().toString(),
+      backgroundBox: { backgroundColor: "#9b92fb" },
+      backgroundContainer: { backgroundColor: IconColors.iconBlueAlt },
+      textDescription1: "IT Department Manager",
+      textDescription2: "Infosys Ltd",
+      textDescription3: "Delhi",
+    },
+  ];
 
   /* const latestJobs = [ */
   /* { */
@@ -313,7 +313,7 @@ const HomeScreen = () => {
           >
             {featuredJobs?.map((item) => {
               return (
-                <ApplyJob
+                <FeaturedJobs
                   key={item.id}
                   backgroundContainer={item.backgroundContainer}
                   backgroundBox={item.backgroundBox}
@@ -329,17 +329,23 @@ const HomeScreen = () => {
         {/*LATEST JOBS*/}
         <Card>
           <JobTitle textMuted="LATEST" text="JOBS" />
-          <ScrollView showsVerticalScrollIndicator={false}>
-            {latestJobs?.map((item) => (
-              <LatestJobs
-                key={item.id}
-                imgUrl={item.imgUrl}
-                jobName={item.jobName}
-                companyAddress={item.companyAddress}
-                languages={item.languages}
-              />
-            ))}
-          </ScrollView>
+          <View style={{ maxHeight: 480 }}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{ flexGrow: 1, zIndex: 100 }}
+              nestedScrollEnabled
+            >
+              {latestJobs?.map((item) => (
+                <LatestJobs
+                  key={item.id}
+                  imgUrl={item.imgUrl}
+                  jobName={item.jobName}
+                  companyAddress={item.companyAddress}
+                  languages={item.languages}
+                />
+              ))}
+            </ScrollView>
+          </View>
         </Card>
 
         {/*TOP EMPLOYERS*/}

@@ -11,9 +11,9 @@ import IconProfile from "./components/home/IconProfile";
 import Jobs from "./components/job/Jobs";
 import PostJob from "./components/job/PostJob";
 import JobDetail from "./components/job/JobDetail";
+import ApplyJob from "./components/home/ApplyJob";
 import EmployerScreen from "./screens/EmployerScreen";
 import CandidateDetail from "./components/employer/CandidateDetail";
-import ResumesScreen from "./screens/ResumesScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +30,7 @@ export default function App() {
               headerShown: false,
             }}
           />
+
           <Stack.Screen
             name="Register"
             component={RegisterScreen}
@@ -38,6 +39,7 @@ export default function App() {
               headerShown: false,
             }}
           />
+
           <Stack.Screen
             name="ForgotPassword"
             component={ForgotPasswordScreen}
@@ -46,6 +48,7 @@ export default function App() {
               headerShown: false,
             }}
           />
+
           <Stack.Screen
             name="Home"
             component={HomeScreen}
@@ -63,6 +66,7 @@ export default function App() {
               ),
             }}
           />
+
           <Stack.Screen
             name="Jobs"
             component={Jobs}
@@ -95,6 +99,7 @@ export default function App() {
               ),
             }}
           />
+
           <Stack.Screen
             name="JobDetail"
             component={JobDetail}
@@ -112,6 +117,25 @@ export default function App() {
               ),
             }}
           />
+
+          <Stack.Screen
+            name="Apply Job"
+            component={ApplyJob}
+            options={{
+              presentation: "fullScreenModal",
+              headerShown: true,
+              headerTitleAlign: "center",
+              title: "Apply Job",
+              headerLeft: () => (
+                <IconProfile
+                  customStyle={{ left: -20 }}
+                  iconName="arrow-left"
+                  type="ApplyJob"
+                />
+              ),
+            }}
+          />
+
           <Stack.Screen
             name="Employer"
             component={EmployerScreen}
@@ -122,22 +146,6 @@ export default function App() {
               title: "Employer",
               headerLeft: () => (
                 <IconProfile customStyle={{ left: -20 }} iconName="bars" />
-              ),
-            }}
-          />
-          <Stack.Screen
-            name="Candidate Resumes"
-            component={ResumesScreen}
-            options={{
-              presentation: "fullScreenModal",
-              headerShown: true,
-              headerTitleAlign: "center",
-              title: "Cadidate Resumes",
-              headerLeft: () => (
-                <IconProfile
-                  customStyle={{ left: -20 }}
-                  iconName="arrow-left"
-                />
               ),
             }}
           />

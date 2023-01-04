@@ -7,7 +7,7 @@ import { setShowProfile } from "../../features/profile";
 
 export default function IconProfile({ customStyle, iconName, type }) {
   const dispatch = useDispatch();
-  const { navigate } = useNavigation();
+  const navigation = useNavigation();
 
   return (
     <TouchableOpacity
@@ -18,8 +18,9 @@ export default function IconProfile({ customStyle, iconName, type }) {
             dispatch(setShowProfile({ showProfile: true }));
             break;
           }
-          case "JobDetail": {
-            navigate("Jobs");
+          case "JobDetail":
+          case "ApplyJob": {
+            navigation.goBack();
             break;
           }
           case "Employer": {
@@ -27,7 +28,7 @@ export default function IconProfile({ customStyle, iconName, type }) {
             break;
           }
           default: {
-            navigate("Home");
+            navigation.navigate("Home");
             break;
           }
         }

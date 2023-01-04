@@ -36,7 +36,9 @@ export default function Job({
               color={Colors.textMuted}
             />
             <View style={{ marginLeft: 20 }}>
-              <Text style={styles.iconText}>{address}</Text>
+              <Text style={styles.iconText} numberOfLines={1}>
+                {address}
+              </Text>
             </View>
           </View>
         </View>
