@@ -110,6 +110,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "space-between",
+    bottom: 0,
+    position: "absolute",
   },
   itemFooter: {
     flexDirection: "column",

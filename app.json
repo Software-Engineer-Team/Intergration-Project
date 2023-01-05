@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Job Linking App",
-    "slug": "Job Linking App",
+    "slug": "job-linking-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/job-linking.jpg",
